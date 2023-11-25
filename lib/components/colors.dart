@@ -17,8 +17,8 @@ class AppColors {
 }
 
 class AppGradient {
-  static const List<Color> containerGradient = [
-    Color(0xE1264DAF),
+  static const List<Color> primaryGradient = [
+    Color(0xCA264DAF),
     Colors.transparent,
   ];
 

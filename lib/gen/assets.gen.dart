@@ -27,6 +27,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/addPhoto.svg
   SvgGenImage get addPhotoSvg => const SvgGenImage('assets/icons/addPhoto.svg');
 
+  /// File path: assets/icons/bookmark.svg
+  SvgGenImage get bookmark => const SvgGenImage('assets/icons/bookmark.svg');
+
   /// File path: assets/icons/edit.svg
   SvgGenImage get edit => const SvgGenImage('assets/icons/edit.svg');
 
@@ -88,8 +91,15 @@ class $AssetsIconsGen {
   SvgGenImage get profileBold =>
       const SvgGenImage('assets/icons/profileBold.svg');
 
+  /// File path: assets/icons/profileCircle.svg
+  SvgGenImage get profileCircle =>
+      const SvgGenImage('assets/icons/profileCircle.svg');
+
   /// File path: assets/icons/search.svg
   SvgGenImage get search => const SvgGenImage('assets/icons/search.svg');
+
+  /// File path: assets/icons/share.png
+  AssetGenImage get share => const AssetGenImage('assets/icons/share.png');
 
   /// List of all assets
   List<dynamic> get values => [
@@ -97,6 +107,7 @@ class $AssetsIconsGen {
         setting,
         addPhotoPng,
         addPhotoSvg,
+        bookmark,
         edit,
         edit2,
         editBold,
@@ -116,7 +127,9 @@ class $AssetsIconsGen {
         pen,
         profile,
         profileBold,
-        search
+        profileCircle,
+        search,
+        share
       ];
 }
 
@@ -136,6 +149,9 @@ class $AssetsImagesGen {
   AssetGenImage get homeScreenCover =>
       const AssetGenImage('assets/images/homeScreenCover.jpg');
 
+  /// File path: assets/images/logo.png
+  AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');
+
   /// File path: assets/images/pod1.jpg
   AssetGenImage get pod1 => const AssetGenImage('assets/images/pod1.jpg');
 
@@ -150,7 +166,7 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<AssetGenImage> get values =>
-      [blog1, blog2, blog3, homeScreenCover, pod1, pod2, pod3, profile];
+      [blog1, blog2, blog3, homeScreenCover, logo, pod1, pod2, pod3, profile];
 }
 
 class Assets {

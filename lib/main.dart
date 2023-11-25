@@ -1,7 +1,8 @@
 // TODO: dynamic author and view
-// TODO: Make a Tags dynamcic
+// TODO: dynamic tags
 // TODO: print list.lenght - 1
 // TODO: splash screen
+// TODO: change FakeModelView
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -24,7 +25,7 @@ class MainApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       scrollBehavior: MyCustomScrollBehavior(),
       getPages: [
-         GetPage(
+        GetPage(
           name: routeArticleScreen,
           page: () => const ArticleScreen(),
         ),

@@ -14,6 +14,7 @@ class ArticleScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.bg,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -26,11 +27,12 @@ class ArticleScreen extends StatelessWidget {
             child: Column(
               children: [
                 appBar(
-                    leftSvgIcon: Assets.icons.left1.path,
-                    rightText: "لیست مقاله ها",
-                    leftIconColor: AppColors.secondaryColor,
-                    rightTextColor: AppColors.secondaryColor,
-                    leftSvgIconOnTap: () => Get.back()),
+                  leftSvgIcon: Assets.icons.left1.path,
+                  rightText: "لیست مقاله ها",
+                  leftIconColor: AppColors.secondaryColor,
+                  rightTextColor: AppColors.secondaryColor,
+                  leftOnTap: () => Get.back(),
+                ),
                 SizedBox(height: AppSize.bodyHeight - 10),
                 SizedBox(
                   height: Get.height / 1,
@@ -68,35 +70,10 @@ class ArticleScreen extends StatelessWidget {
                             overflow: TextOverflow.ellipsis,
                           ),
                           const SizedBox(height: 5),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                fakeModelBlogList[index].author,
-                                style: AppTextStyle.heading2(
-                                  color: AppColors.defaultColorBlack,
-                                ),
-                              ),
-                              Row(
-                                children: [
-                                  SizedBox(
-                                     height: 17,
-                                    child: Text(
-                                      "25689",
-                                      style: AppTextStyle.heading2(
-                                          fontSize: 13,
-                                          color: AppColors.defaultColorBlack),
-                                    ),
-                                  ),
-                                  const SizedBox(width: 5),
-                                  const Icon(
-                                    CupertinoIcons.eye_fill,
-                                    color: AppColors.defaultColorBlack,
-                                    size: 13,
-                                  ),
-                                ],
-                              ),
-                            ],
+                          authorAndView(
+                            author: fakeModelBlogList[index].author,
+                            view: "21456",
+                            authorAndViewColor: AppColors.defaultColorBlack
                           ),
                           SizedBox(height: AppSize.bodyHeight),
                         ],

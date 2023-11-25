@@ -78,7 +78,7 @@ class ProfileScreen extends StatelessWidget {
                                       ),
                                       fit: BoxFit.cover,
                                     )
-                                  : Assets.images.blog3.image(
+                                  : Assets.images.profile.image(
                                       fit: BoxFit.cover,
                                     ),
                         ),

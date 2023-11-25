@@ -19,6 +19,7 @@ class HomeScreen extends StatelessWidget {
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
             padding: const EdgeInsets.fromLTRB(
@@ -52,7 +53,7 @@ class HomeScreen extends StatelessWidget {
                         borderRadius:
                             BorderRadius.circular(AppSize.borderRadius),
                         gradient: const LinearGradient(
-                          colors: AppGradient.containerGradient,
+                          colors: AppGradient.primaryGradient,
                           begin: Alignment.bottomCenter,
                           end: Alignment.topCenter,
                         ),
@@ -82,32 +83,9 @@ class HomeScreen extends StatelessWidget {
                               overflow: TextOverflow.ellipsis,
                             ),
                             const SizedBox(height: 15),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "محمد حقیقی",
-                                  style: AppTextStyle.heading2(),
-                                ),
-                                Row(
-                                  children: [
-                                    SizedBox(
-                                      height: 16,
-                                      child: Text(
-                                        "25689",
-                                        style:
-                                            AppTextStyle.heading2(fontSize: 12),
-                                      ),
-                                    ),
-                                    const SizedBox(width: 3),
-                                    const Icon(
-                                      CupertinoIcons.eye_fill,
-                                      color: AppColors.defaultColorWhite,
-                                      size: 12,
-                                    )
-                                  ],
-                                ),
-                              ],
+                            authorAndView(
+                              author: "محمد حقیقی",
+                              view: "25678",
                             ),
                           ],
                         ),
@@ -152,7 +130,9 @@ class HomeScreen extends StatelessWidget {
               Get.toNamed(routeArticleScreen);
             },
             child: Padding(
-              padding: const EdgeInsets.only(right: AppSize.bodyPaddingRight),
+              padding: const EdgeInsets.only(
+                right: AppSize.bodyPaddingRight,
+              ),
               child: iconWithTitle(
                 title: "مشاهده داغ ترین نوشته ها",
                 svgIcon: Assets.icons.pen.path,

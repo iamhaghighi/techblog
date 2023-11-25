@@ -8,15 +8,19 @@ import 'package:techblog/components/text_style.dart';
 import 'package:techblog/controllers/main/main_screen_controller.dart';
 import 'package:techblog/gen/assets.gen.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:techblog/models/fakeModel.dart';
 
 Widget getWidgetRight({
   required String? rightSvgIcon,
   required Color rightSvgIconColor,
   required double? rightSvgIconHeight,
   required IconData? rightIcon,
+  required double? rightIconSize,
   required Color? rightIconColor,
   required String rightText,
   required Color rightTextColor,
+  required String rightLeftSvgIcon,
+  required Color rightLeftSvgIconColor,
 }) {
   if (rightSvgIcon != null) {
     return SvgPicture.asset(
@@ -27,9 +31,19 @@ Widget getWidgetRight({
     );
   } else if (rightSvgIcon == null) {
     if (rightIcon != null) {
-      return Icon(
-        rightIcon,
-        color: rightIconColor,
+      return Row(
+        children: [
+          Icon(
+            rightIcon,
+            color: rightIconColor,
+            size: rightIconSize,
+          ),
+          const SizedBox(width: AppSize.betweenWidgetWidth),
+          SvgPicture.asset(
+            rightLeftSvgIcon,
+            color: rightLeftSvgIconColor,
+          )
+        ],
       );
     } else {
       return Text(
@@ -84,6 +98,9 @@ Widget appBar({
   double? rightSvgIconHeight,
   String rightText = '',
   Color rightTextColor = AppColors.quinaryColor,
+  String rightLeftSvgIcon = '',
+  Color rightLeftSvgIconColor = AppColors.quinaryColor,
+  double? rightIconSize,
   IconData? leftIcon,
   Color leftIconColor = AppColors.quinaryColor,
   String? leftSvgIcon,
@@ -93,15 +110,15 @@ Widget appBar({
   double? leftSvgIconTextWidth = 6,
   String? centerPngIcon,
   double? centerPngIconScale,
-  void Function()? rightSvgIconOnTap,
-  void Function()? leftSvgIconOnTap,
+  void Function()? rightOnTap,
+  void Function()? leftOnTap,
 }) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
       // Right Icon. here, if svg is null, The icon is displayed and vice versa
       InkWell(
-        onTap: rightSvgIconOnTap,
+        onTap: rightOnTap,
         child: getWidgetRight(
           rightIcon: rightIcon,
           rightSvgIcon: rightSvgIcon,
@@ -110,6 +127,9 @@ Widget appBar({
           rightSvgIconColor: rightIconColor,
           rightIconColor: rightIconColor,
           rightTextColor: rightTextColor,
+          rightLeftSvgIcon: rightLeftSvgIcon,
+          rightLeftSvgIconColor: rightLeftSvgIconColor,
+          rightIconSize: rightIconSize,
         ),
       ),
       // here, if want use center icon
@@ -118,7 +138,7 @@ Widget appBar({
           : Image.asset(centerPngIcon, scale: centerPngIconScale),
       // Left Icon. here, if svg is null, The icon is displayed and vice versa
       InkWell(
-          onTap: leftSvgIconOnTap,
+          onTap: leftOnTap,
           child: getWidgetLeft(
             leftIcon: leftIcon,
             leftIconColor: leftIconColor,
@@ -261,40 +281,16 @@ Widget viewContentBox({
                     width: Get.width / 2.2,
                     height: Get.height / 4.5,
                     child: Padding(
-                      padding: const EdgeInsets.fromLTRB(
-                        8,
-                        0,
-                        8,
-                        8,
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Text(
-                            modelList[index].author,
-                            style: AppTextStyle.heading2(fontSize: 12),
-                          ),
-                          Row(
-                            children: [
-                              SizedBox(
-                                height: 15,
-                                child: Text(
-                                  "${modelList[index].view}",
-                                  style: AppTextStyle.heading2(fontSize: 12),
-                                ),
-                              ),
-                              const SizedBox(width: 3),
-                              const Icon(
-                                CupertinoIcons.eye_fill,
-                                color: Colors.white,
-                                size: 12,
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
+                        padding: const EdgeInsets.fromLTRB(
+                          8,
+                          0,
+                          8,
+                          8,
+                        ),
+                        child: authorAndView(
+                          author: fakeModelBlogList[index].author,
+                          view: "2547",
+                        )),
                   )
                 ],
               ),
@@ -433,4 +429,38 @@ class BottomNavigation extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget authorAndView({
+  required String author,
+  required String view,
+  Color authorAndViewColor = AppColors.defaultColorWhite,
+}) {
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    crossAxisAlignment: CrossAxisAlignment.end,
+    children: [
+      Text(
+        author,
+        style: AppTextStyle.heading2(color: authorAndViewColor),
+      ),
+      Row(
+        children: [
+          SizedBox(
+            height: 16,
+            child: Text(
+              view,
+              style: AppTextStyle.heading2(fontSize: 12, color: authorAndViewColor),
+            ),
+          ),
+          const SizedBox(width: 3),
+          Icon(
+            CupertinoIcons.eye_fill,
+            color: authorAndViewColor,
+            size: 12,
+          )
+        ],
+      ),
+    ],
+  );
 }
