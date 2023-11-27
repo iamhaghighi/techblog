@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:techblog/components/colors.dart';
 import 'package:techblog/components/size.dart';
 import 'package:techblog/components/text_style.dart';
+import 'package:techblog/controllers/other/onboard_screen_controller.dart';
 import 'package:techblog/main.dart';
-import 'package:techblog/controllers/onboard_screen_controller.dart';
 
 class OnBoardScreen extends StatelessWidget {
   OnBoardScreen({super.key});

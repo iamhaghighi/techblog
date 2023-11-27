@@ -69,7 +69,7 @@ class ArticleContent extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    homeScreenController.fakeModelBlogList[0].title,
+                    "homeScreenController.fakeModelBlogList[0].title",
                     style:
                         AppTextStyle.title(color: AppColors.defaultColorBlack),
                   ),
@@ -84,7 +84,7 @@ class ArticleContent extends StatelessWidget {
                         width: AppSize.betweenWidgetWidth,
                       ),
                       Text(
-                        homeScreenController.fakeModelBlogList[0].author,
+                        "homeScreenController.fakeModelBlogList[0].author",
                         style: AppTextStyle.heading2(
                           color: AppColors.defaultColorBlack,
                         ),

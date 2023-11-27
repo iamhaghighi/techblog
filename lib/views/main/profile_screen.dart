@@ -6,7 +6,7 @@ import 'package:techblog/components/colors.dart';
 import 'package:techblog/components/components.dart';
 import 'package:techblog/components/size.dart';
 import 'package:techblog/components/text_style.dart';
-import 'package:techblog/controllers/file_picker_controller.dart';
+import 'package:techblog/controllers/other/file_picker_controller.dart';
 import 'package:techblog/gen/assets.gen.dart';
 import 'package:techblog/services/file_picker.dart';
 
