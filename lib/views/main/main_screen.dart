@@ -18,7 +18,7 @@ class MainScreen extends StatelessWidget {
     super.key,
   });
 
-  // TODO: change main screenController to Get.find when change to splashScreen in main.dart
+  // change main screenController to Get.find when change to splashScreen in main.dart
   final MainScreenController mainScreenController = Get.put(
     MainScreenController(),
   );
@@ -36,6 +36,7 @@ class MainScreen extends StatelessWidget {
       key: _key,
       backgroundColor: AppColors.bg,
       drawer: Drawer(
+        width: 250,
         backgroundColor: AppColors.bg,
         child: ListView(
           children: [

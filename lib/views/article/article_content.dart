@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:get/get.dart';
@@ -10,7 +9,7 @@ import 'package:techblog/components/text_style.dart';
 import 'package:techblog/controllers/main/home_screen_controller.dart';
 import 'package:techblog/gen/assets.gen.dart';
 
-  final homeScreenController = Get.find<HomeScreenController>();
+final homeScreenController = Get.find<HomeScreenController>();
 
 class ArticleContent extends StatelessWidget {
   const ArticleContent({super.key});
@@ -99,18 +98,15 @@ class ArticleContent extends StatelessWidget {
                         color: AppColors.defaultColorBlack),
                     enableCaching: true,
                     onLoadingBuilder: (context, element, loadingProgress) =>
-                        // TODO: extract method
-                        const SpinKitFadingCube(
-                      color: AppColors.primaryColor,
-                      size: 15,
-                    ),
+                        myLoading(),
                   ),
                 ],
               ),
             ),
             SizedBox(height: AppSize.bodyHeight),
             tags(
-              modeList: homeScreenController.fakeModelTagsList,
+              //TODO: change to tagsList from id. after
+              modeList: homeScreenController.tagsList,
               listViewSizedBoxHeight: 60,
               isPadding: true,
               rightPadding: AppSize.bodyPaddingRight - 5,
@@ -119,7 +115,8 @@ class ArticleContent extends StatelessWidget {
             ),
             SizedBox(height: AppSize.bodyHeight),
             viewContentBox(
-              modelList: homeScreenController.fakeModelTagsList,
+              //TODO: change to relatedList. after
+              modelList: homeScreenController.articleTopVisitedList,
               isPadding: true,
               rightPadding: AppSize.bodyPaddingRight - 5,
               leftPadding: AppSize.bodyPaddingLeft - 5,

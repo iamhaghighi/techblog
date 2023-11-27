@@ -30,6 +30,7 @@ class MainApp extends StatelessWidget {
         GetPage(
           name: routeArticleScreen,
           page: () => ArticleScreen(),
+          binding: ArticleScreenBindings()
         ),
         GetPage(
           name: routeMainScreen,

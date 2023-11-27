@@ -7,7 +7,9 @@ environment:
   sdk: '>=3.3.0-87.0.dev <4.0.0'
 
 dependencies:
+  cached_network_image: ^3.3.0
   cupertino_icons: ^1.0.6
+  dio: ^5.3.4
   file_picker: ^6.1.1
   flutter:
     sdk: flutter

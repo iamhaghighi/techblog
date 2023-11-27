@@ -15,6 +15,7 @@ class AppColors {
   static const Color warningColor = Color(0XFFFF264B);
   static const Color profileSettingBoxShadow = Color.fromARGB(15, 0, 0, 0);
   static const Color divider = Color.fromARGB(100, 172, 169, 191);
+  static const Color onBoardDots = Color(0xFFD8D8D8);
 }
 
 class AppGradient {

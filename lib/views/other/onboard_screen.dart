@@ -114,7 +114,7 @@ class OnBoardScreen extends StatelessWidget {
               decoration: BoxDecoration(
                 color: onBoardScreenController.currentIndex.value == index
                     ? AppColors.primaryColor
-                    : const Color(0xFFD8D8D8), // TODO: set variable for color
+                    : AppColors.onBoardDots,
                 borderRadius: BorderRadius.circular(3),
               ),
             );

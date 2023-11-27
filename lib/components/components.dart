@@ -1,11 +1,12 @@
 // ignore_for_file: must_be_immutable
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:techblog/components/colors.dart';
 import 'package:techblog/components/size.dart';
 import 'package:techblog/components/text_style.dart';
-import 'package:techblog/controllers/main/home_screen_controller.dart';
 import 'package:techblog/controllers/main/main_screen_controller.dart';
 import 'package:techblog/gen/assets.gen.dart';
 import 'package:flutter/cupertino.dart';
@@ -242,7 +243,6 @@ Widget tags(
   );
 }
 
-final homeScreenController = Get.find<HomeScreenController>();
 Widget viewContentBox({
   required List modelList,
   double listViewHeightSize = 200,
@@ -252,6 +252,7 @@ Widget viewContentBox({
   double leftPadding = 0,
   double rightPadding = 0,
   double betweenWidgetWidth = 0,
+  bool isDifferentVariable = false,
 }) {
   return SizedBox(
     height: listViewHeightSize,
@@ -302,11 +303,17 @@ Widget viewContentBox({
                         child: ClipRRect(
                           borderRadius:
                               BorderRadius.circular(AppSize.borderRadius),
-                          child: Image(
-                            image: AssetImage(
-                              modelList[index].image,
+                          child: CachedNetworkImage(
+                            imageUrl: isDifferentVariable ? modelList[index].poster! : modelList[index].image!,
+                            placeholder: (context, url) => myLoading(),
+                            //TODO: Change to SvgIconFav
+                            errorWidget: (context, url, error) => const Icon(
+                              Icons.image_not_supported,
                             ),
-                            fit: BoxFit.cover,
+                            imageBuilder: (context, imageProvider) => Image(
+                              image: imageProvider,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                       ),
@@ -323,10 +330,10 @@ Widget viewContentBox({
                         8,
                       ),
                       child: authorAndView(
-                          author: homeScreenController
-                              .fakeModelBlogList[index].author,
-                          view: "2547",
-                          fontSize: 12),
+                        author: modelList[index].author ?? 'ناشناس',
+                        view: modelList[index].view!,
+                        fontSize: 12,
+                      ),
                     ),
                   )
                 ],
@@ -335,7 +342,7 @@ Widget viewContentBox({
               SizedBox(
                 width: Get.width / 2.2,
                 child: Text(
-                  modelList[index].title,
+                  modelList[index].title!,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style:
@@ -351,6 +358,7 @@ Widget viewContentBox({
 }
 
 final mainScreenController = Get.find<MainScreenController>();
+
 class BottomNavigation extends StatelessWidget {
   BottomNavigation({
     super.key,
@@ -511,5 +519,12 @@ Widget authorAndView({
         ],
       ),
     ],
+  );
+}
+
+Widget myLoading() {
+  return const SpinKitFadingCube(
+    color: AppColors.primaryColor,
+    size: 15,
   );
 }

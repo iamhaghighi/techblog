@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,150 +21,169 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      physics: const BouncingScrollPhysics(),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(
-              AppSize.bodyPaddingLeft,
-              AppSize.bodyPaddingTop,
-              AppSize.bodyPaddingRight,
-              0,
-            ),
-            child: Column(
-              children: [
-                // appBar
-                appBar(
-                  leftSvgIcon: Assets.icons.search.path,
-                  rightSvgIcon: Assets.icons.menuHamburger.path,
-                  centerPngIcon: Assets.icons.logoPng.path,
-                  centerPngIconScale: 4,
-                  leftSvgIconHeight: 20,
-                  rightOnTap: () {
-                    homeScreenController.key!.currentState!.openDrawer();
-                  },
-                ),
-                SizedBox(height: AppSize.bodyHeight),
-                // cover
-                Stack(
-                  children: [
-                    Container(
-                      width: double.infinity,
-                      height: Get.height / 2,
-                      decoration: BoxDecoration(
-                        borderRadius:
-                            BorderRadius.circular(AppSize.borderRadius),
-                      ),
-                      foregroundDecoration: BoxDecoration(
-                        borderRadius:
-                            BorderRadius.circular(AppSize.borderRadius),
-                        gradient: const LinearGradient(
-                          colors: AppGradient.primaryGradient,
-                          begin: Alignment.bottomCenter,
-                          end: Alignment.topCenter,
-                        ),
-                      ),
-                      child: ClipRRect(
-                        borderRadius:
-                            BorderRadius.circular(AppSize.borderRadius),
-                        child: Image(
-                          image: AssetImage(Assets.images.homeScreenCover.path),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+    return Obx(
+      () => homeScreenController.loading.value != false
+          ? myLoading()
+          : SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(
+                      AppSize.bodyPaddingLeft,
+                      AppSize.bodyPaddingTop,
+                      AppSize.bodyPaddingRight,
+                      0,
                     ),
-                    Positioned(
-                      bottom: 0,
-                      left: 0,
-                      right: 0,
-                      child: Padding(
-                        padding: const EdgeInsets.fromLTRB(15, 0, 15, 15),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                    child: Column(
+                      children: [
+                        // appBar
+                        appBar(
+                          leftSvgIcon: Assets.icons.search.path,
+                          rightSvgIcon: Assets.icons.menuHamburger.path,
+                          centerPngIcon: Assets.icons.logoPng.path,
+                          centerPngIconScale: 4,
+                          leftSvgIconHeight: 20,
+                          rightOnTap: () {
+                            homeScreenController.key!.currentState!
+                                .openDrawer();
+                          },
+                        ),
+                        SizedBox(height: AppSize.bodyHeight),
+                        // cover
+                        Stack(
                           children: [
-                            Text(
-                              homeScreenController.homeScreenCoverMap['title'],
-                              style: AppTextStyle.title(),
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
+                            Container(
+                              width: double.infinity,
+                              height: Get.height / 2,
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.circular(AppSize.borderRadius),
+                              ),
+                              foregroundDecoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.circular(AppSize.borderRadius),
+                                gradient: const LinearGradient(
+                                  colors: AppGradient.primaryGradient,
+                                  begin: Alignment.bottomCenter,
+                                  end: Alignment.topCenter,
+                                ),
+                              ),
+                              child: ClipRRect(
+                                borderRadius:
+                                    BorderRadius.circular(AppSize.borderRadius),
+                                child: CachedNetworkImage(
+                                  imageUrl: homeScreenController
+                                      .posterInfo.value.image!,
+                                  placeholder: (context, url) => myLoading(),
+                                  //TODO: change to svgIconFav
+                                  errorWidget: (context, url, error) =>
+                                      const Icon(
+                                    Icons.image_not_supported_outlined,
+                                  ),
+                                  imageBuilder: (context, imageProvider) {
+                                    return Image(
+                                      image: imageProvider,
+                                      fit: BoxFit.cover,
+                                    );
+                                  },
+                                ),
+                              ),
                             ),
-                            const SizedBox(height: 15),
-                            authorAndView(
-                              author: homeScreenController
-                                  .homeScreenCoverMap['author'],
-                              view: homeScreenController
-                                  .homeScreenCoverMap['view'],
+                            Positioned(
+                              bottom: 0,
+                              left: 0,
+                              right: 0,
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(15, 0, 15, 15),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      homeScreenController
+                                          .posterInfo.value.title!,
+                                      style: AppTextStyle.title(),
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                    const SizedBox(height: 15),
+                                    authorAndView(
+                                      author: "محمد حقیقی",
+                                      view: "25674",
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
                           ],
                         ),
+                      ],
+                    ),
+                  ),
+                  // TAGS
+                  SizedBox(height: AppSize.bodyHeight),
+                  tags(
+                    modeList: homeScreenController.tagsList,
+                    listViewSizedBoxHeight: 60,
+                    isPadding: true,
+                    leftPadding: AppSize.bodyPaddingLeft,
+                    rightPadding: AppSize.bodyPaddingRight,
+                    betweenWidgetWidth: AppSize.betweenWidgetWidth,
+                  ),
+                  // blog
+                  InkWell(
+                    onTap: () {
+                      Get.toNamed(routeArticleScreen);
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                        right: AppSize.bodyPaddingRight,
+                      ),
+                      child: iconWithTitle(
+                        title: "مشاهده داغ ترین نوشته ها",
+                        svgIcon: Assets.icons.pen.path,
+                        svgIconAndTitleColor: AppColors.secondaryColor,
                       ),
                     ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          // TAGS
-          SizedBox(height: AppSize.bodyHeight),
-          tags(
-            modeList: homeScreenController.fakeModelTagsList,
-            listViewSizedBoxHeight: 60,
-            isPadding: true,
-            leftPadding: AppSize.bodyPaddingLeft,
-            rightPadding: AppSize.bodyPaddingRight,
-            betweenWidgetWidth: AppSize.betweenWidgetWidth,
-          ),
-          // blog
-          InkWell(
-            onTap: () {
-              Get.toNamed(routeArticleScreen);
-            },
-            child: Padding(
-              padding: const EdgeInsets.only(
-                right: AppSize.bodyPaddingRight,
-              ),
-              child: iconWithTitle(
-                title: "مشاهده داغ ترین نوشته ها",
-                svgIcon: Assets.icons.pen.path,
-                svgIconAndTitleColor: AppColors.secondaryColor,
-              ),
-            ),
-          ),
-          SizedBox(height: AppSize.bodyHeight - 20),
-          viewContentBox(
-            modelList: homeScreenController.fakeModelBlogList,
-            isPadding: true,
-            rightPadding: AppSize.bodyPaddingRight,
-            leftPadding: AppSize.bodyPaddingLeft,
-            betweenWidgetWidth: AppSize.betweenWidgetWidth,
-          ),
-          SizedBox(height: AppSize.bodyHeight),
-          // podcast
-          InkWell(
-            onTap: () {},
-            child: Padding(
-              padding: const EdgeInsets.only(right: AppSize.bodyPaddingRight),
-              child: iconWithTitle(
-                svgIcon: Assets.icons.microphone.path,
-                title: "مشاهده داغ ترین پادکست ها",
-                svgIconAndTitleColor: AppColors.secondaryColor,
+                  ),
+                  SizedBox(height: AppSize.bodyHeight - 20),
+                  viewContentBox(
+                    modelList: homeScreenController.articleTopVisitedList,
+                    isPadding: true,
+                    rightPadding: AppSize.bodyPaddingRight,
+                    leftPadding: AppSize.bodyPaddingLeft,
+                    betweenWidgetWidth: AppSize.betweenWidgetWidth,
+                  ),
+                  SizedBox(height: AppSize.bodyHeight),
+                  // podcast
+                  InkWell(
+                    onTap: () {},
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          right: AppSize.bodyPaddingRight),
+                      child: iconWithTitle(
+                        svgIcon: Assets.icons.microphone.path,
+                        title: "مشاهده داغ ترین پادکست ها",
+                        svgIconAndTitleColor: AppColors.secondaryColor,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: AppSize.bodyHeight - 20),
+                  viewContentBox(
+                    modelList: homeScreenController.articleTopPodcastList,
+                    isPadding: true,
+                    rightPadding: AppSize.bodyPaddingRight,
+                    leftPadding: AppSize.bodyPaddingLeft,
+                    betweenWidgetWidth: AppSize.betweenWidgetWidth,
+                    isDifferentVariable: true,
+                  ),
+                  // height for bottomNav
+                  SizedBox(height: AppSize.bodyHeight + 50),
+                ],
               ),
             ),
-          ),
-          SizedBox(height: AppSize.bodyHeight - 20),
-          viewContentBox(
-            modelList: homeScreenController.fakeModelPodcastList,
-            isPadding: true,
-            rightPadding: AppSize.bodyPaddingRight,
-            leftPadding: AppSize.bodyPaddingLeft,
-            betweenWidgetWidth: AppSize.betweenWidgetWidth,
-          ),
-          // height for bottomNav
-          SizedBox(height: AppSize.bodyHeight + 50),
-        ],
-      ),
     );
   }
 }
