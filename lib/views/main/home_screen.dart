@@ -98,32 +98,15 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           // TAGS
-          SizedBox(
-            height: 30,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              physics: const BouncingScrollPhysics(),
-              itemCount: fakeModelTagsList.length,
-              itemBuilder: (context, index) {
-                bool isLastItem = index == fakeModelTagsList.length - 1;
-                return Padding(
-                  padding: EdgeInsets.fromLTRB(
-                    isLastItem ? AppSize.bodyPaddingLeft : 0,
-                    0,
-                    index == 0
-                        ? AppSize.bodyPaddingRight
-                        : AppSize.betweenWidgetWidth,
-                    0,
-                  ),
-                  child: tags(
-                    svgIcon: Assets.icons.hashtag.path,
-                    title: fakeModelTagsList[index].title,
-                  ),
-                );
-              },
-            ),
+          tags(
+            modeList: fakeModelTagsList,
+            listViewSizedBoxHeight: 60,
+            isPadding: true,
+            leftPadding: AppSize.bodyPaddingLeft,
+            rightPadding: AppSize.bodyPaddingRight,
+            betweenWidgetWidth: AppSize.betweenWidgetWidth
           ),
-          SizedBox(height: AppSize.bodyHeight),
+          SizedBox(height: AppSize.bodyHeight - 20),
           // blog
           InkWell(
             onTap: () {

@@ -4,8 +4,10 @@ import 'package:techblog/components/colors.dart';
 class AppTextStyle {
   static TextStyle title({
     Color color = AppColors.defaultColorWhite,
+    double fontSize = 14
   }) {
     return TextStyle(
+      fontSize: fontSize,
       color: color,
       fontWeight: FontWeight.w600,
     );

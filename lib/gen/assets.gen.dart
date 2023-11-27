@@ -152,6 +152,18 @@ class $AssetsImagesGen {
   /// File path: assets/images/logo.png
   AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');
 
+  /// File path: assets/images/onBoard1.png
+  AssetGenImage get onBoard1 =>
+      const AssetGenImage('assets/images/onBoard1.png');
+
+  /// File path: assets/images/onBoard2.png
+  AssetGenImage get onBoard2 =>
+      const AssetGenImage('assets/images/onBoard2.png');
+
+  /// File path: assets/images/onBoard3.png
+  AssetGenImage get onBoard3 =>
+      const AssetGenImage('assets/images/onBoard3.png');
+
   /// File path: assets/images/pod1.jpg
   AssetGenImage get pod1 => const AssetGenImage('assets/images/pod1.jpg');
 
@@ -165,8 +177,20 @@ class $AssetsImagesGen {
   AssetGenImage get profile => const AssetGenImage('assets/images/profile.png');
 
   /// List of all assets
-  List<AssetGenImage> get values =>
-      [blog1, blog2, blog3, homeScreenCover, logo, pod1, pod2, pod3, profile];
+  List<AssetGenImage> get values => [
+        blog1,
+        blog2,
+        blog3,
+        homeScreenCover,
+        logo,
+        onBoard1,
+        onBoard2,
+        onBoard3,
+        pod1,
+        pod2,
+        pod3,
+        profile
+      ];
 }
 
 class Assets {

@@ -107,30 +107,13 @@ class ArticleContent extends StatelessWidget {
               ),
             ),
             SizedBox(height: AppSize.bodyHeight),
-            SizedBox(
-              height: 30,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                physics: const BouncingScrollPhysics(),
-                itemCount: 2,
-                itemBuilder: (context, index) {
-                  bool isLastItem = index == fakeModelTagsList.length - 1;
-                  return Padding(
-                    padding: EdgeInsets.fromLTRB(
-                      isLastItem ? AppSize.bodyPaddingLeft - 5 : 0,
-                      0,
-                      index == 0
-                          ? AppSize.bodyPaddingRight - 5
-                          : AppSize.betweenWidgetWidth - 5,
-                      0,
-                    ),
-                    child: tags(
-                      svgIcon: Assets.icons.hashtag.path,
-                      title: fakeModelTagsList[index].title,
-                    ),
-                  );
-                },
-              ),
+            tags(
+              modeList: fakeModelTagsList,
+              listViewSizedBoxHeight: 60,
+              isPadding: true,
+              rightPadding: AppSize.bodyPaddingRight - 5,
+              leftPadding: AppSize.bodyPaddingLeft - 5,
+              betweenWidgetWidth: AppSize.betweenWidgetWidth,
             ),
             SizedBox(height: AppSize.bodyHeight),
             viewContentBox(

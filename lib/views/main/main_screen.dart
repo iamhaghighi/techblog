@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:techblog/components/colors.dart';
 import 'package:techblog/components/components.dart';
+
 import 'package:techblog/views/main/home_screen.dart';
 import 'package:techblog/views/main/profile_screen.dart';
 

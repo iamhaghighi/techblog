@@ -172,39 +172,73 @@ Widget iconWithTitle({
   );
 }
 
-Widget tags({
-  required svgIcon,
-  required title,
-  Color? bgColor = AppColors.quinaryColor,
-}) {
-  return Column(
-    children: [
-      Container(
-        decoration: BoxDecoration(
-          color: bgColor,
-          borderRadius: BorderRadius.circular(AppSize.borderRadius),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(12, 5, 12, 5),
-          child: Row(
+Widget tags(
+    {required List modeList,
+    required double listViewSizedBoxHeight,
+    Axis scrollDirection = Axis.horizontal,
+    bool isPadding = false,
+    double leftPadding = 0,
+    double rightPadding = 0,
+    double betweenWidgetWidth = 0,
+    Color hashtagContainerColor = AppColors.quinaryColor,
+    Color iconColor = AppColors.defaultColorWhite}) {
+  return SizedBox(
+    height: listViewSizedBoxHeight,
+    child: ListView.builder(
+      scrollDirection: scrollDirection,
+      physics: const BouncingScrollPhysics(),
+      itemCount: modeList.length,
+      itemBuilder: (context, index) {
+        bool isLastItem = index == modeList.length - 1;
+        return Padding(
+          padding: EdgeInsets.fromLTRB(
+            isPadding
+                ? isLastItem
+                    ? leftPadding
+                    : 0
+                : 0,
+            0,
+            isPadding
+                ? index == 0
+                    ? rightPadding
+                    : betweenWidgetWidth
+                : 0,
+            0,
+          ),
+          child: Column(
             children: [
-              SvgPicture.asset(
-                svgIcon,
-                width: 13,
-                color: AppColors.defaultColorWhite,
-              ),
-              const SizedBox(
-                width: AppSize.betweenWidgetWidth,
-              ),
-              Text(
-                title,
-                style: AppTextStyle.heading2(),
+              Container(
+                decoration: BoxDecoration(
+                  color: hashtagContainerColor,
+                  borderRadius: BorderRadius.circular(
+                    AppSize.borderRadius,
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(12, 5, 12, 5),
+                  child: Row(
+                    children: [
+                      SvgPicture.asset(
+                        Assets.icons.hashtag.path,
+                        width: 13,
+                        color: iconColor,
+                      ),
+                      const SizedBox(
+                        width: AppSize.betweenWidgetWidth,
+                      ),
+                      Text(
+                        modeList[index].title,
+                        style: AppTextStyle.heading2(),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ],
           ),
-        ),
-      ),
-    ],
+        );
+      },
+    ),
   );
 }
 
@@ -281,16 +315,18 @@ Widget viewContentBox({
                     width: Get.width / 2.2,
                     height: Get.height / 4.5,
                     child: Padding(
-                        padding: const EdgeInsets.fromLTRB(
-                          8,
-                          0,
-                          8,
-                          8,
-                        ),
-                        child: authorAndView(
-                          author: fakeModelBlogList[index].author,
-                          view: "2547",
-                        )),
+                      padding: const EdgeInsets.fromLTRB(
+                        8,
+                        0,
+                        8,
+                        8,
+                      ),
+                      child: authorAndView(
+                        author: fakeModelBlogList[index].author,
+                        view: "2547",
+                        fontSize: 12
+                      ),
+                    ),
                   )
                 ],
               ),
@@ -435,6 +471,7 @@ Widget authorAndView({
   required String author,
   required String view,
   Color authorAndViewColor = AppColors.defaultColorWhite,
+  double fontSize = 14,
 }) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -442,7 +479,8 @@ Widget authorAndView({
     children: [
       Text(
         author,
-        style: AppTextStyle.heading2(color: authorAndViewColor),
+        style: AppTextStyle.heading2(
+            color: authorAndViewColor, fontSize: fontSize),
       ),
       Row(
         children: [
@@ -450,7 +488,8 @@ Widget authorAndView({
             height: 16,
             child: Text(
               view,
-              style: AppTextStyle.heading2(fontSize: 12, color: authorAndViewColor),
+              style: AppTextStyle.heading2(
+                  fontSize: 12, color: authorAndViewColor),
             ),
           ),
           const SizedBox(width: 3),
