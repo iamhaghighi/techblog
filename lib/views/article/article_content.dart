@@ -7,8 +7,10 @@ import 'package:techblog/components/colors.dart';
 import 'package:techblog/components/components.dart';
 import 'package:techblog/components/size.dart';
 import 'package:techblog/components/text_style.dart';
+import 'package:techblog/controllers/main/home_screen_controller.dart';
 import 'package:techblog/gen/assets.gen.dart';
-import 'package:techblog/models/fakeModel.dart';
+
+  final homeScreenController = Get.find<HomeScreenController>();
 
 class ArticleContent extends StatelessWidget {
   const ArticleContent({super.key});
@@ -68,7 +70,7 @@ class ArticleContent extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    fakeModelBlogList[0].title,
+                    homeScreenController.fakeModelBlogList[0].title,
                     style:
                         AppTextStyle.title(color: AppColors.defaultColorBlack),
                   ),
@@ -83,7 +85,7 @@ class ArticleContent extends StatelessWidget {
                         width: AppSize.betweenWidgetWidth,
                       ),
                       Text(
-                        fakeModelBlogList[0].author,
+                        homeScreenController.fakeModelBlogList[0].author,
                         style: AppTextStyle.heading2(
                           color: AppColors.defaultColorBlack,
                         ),
@@ -108,7 +110,7 @@ class ArticleContent extends StatelessWidget {
             ),
             SizedBox(height: AppSize.bodyHeight),
             tags(
-              modeList: fakeModelTagsList,
+              modeList: homeScreenController.fakeModelTagsList,
               listViewSizedBoxHeight: 60,
               isPadding: true,
               rightPadding: AppSize.bodyPaddingRight - 5,
@@ -117,7 +119,7 @@ class ArticleContent extends StatelessWidget {
             ),
             SizedBox(height: AppSize.bodyHeight),
             viewContentBox(
-              modelList: fakeModelPodcastList,
+              modelList: homeScreenController.fakeModelTagsList,
               isPadding: true,
               rightPadding: AppSize.bodyPaddingRight - 5,
               leftPadding: AppSize.bodyPaddingLeft - 5,

@@ -5,10 +5,10 @@ import 'package:get/get.dart';
 import 'package:techblog/components/colors.dart';
 import 'package:techblog/components/size.dart';
 import 'package:techblog/components/text_style.dart';
+import 'package:techblog/controllers/main/home_screen_controller.dart';
 import 'package:techblog/controllers/main/main_screen_controller.dart';
 import 'package:techblog/gen/assets.gen.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:techblog/models/fakeModel.dart';
 
 Widget getWidgetRight({
   required String? rightSvgIcon,
@@ -242,6 +242,7 @@ Widget tags(
   );
 }
 
+final homeScreenController = Get.find<HomeScreenController>();
 Widget viewContentBox({
   required List modelList,
   double listViewHeightSize = 200,
@@ -322,10 +323,10 @@ Widget viewContentBox({
                         8,
                       ),
                       child: authorAndView(
-                        author: fakeModelBlogList[index].author,
-                        view: "2547",
-                        fontSize: 12
-                      ),
+                          author: homeScreenController
+                              .fakeModelBlogList[index].author,
+                          view: "2547",
+                          fontSize: 12),
                     ),
                   )
                 ],
@@ -349,6 +350,7 @@ Widget viewContentBox({
   );
 }
 
+final mainScreenController = Get.find<MainScreenController>();
 class BottomNavigation extends StatelessWidget {
   BottomNavigation({
     super.key,
@@ -356,10 +358,6 @@ class BottomNavigation extends StatelessWidget {
   });
 
   Rx<int Function(int)> changeScreenIndex;
-
-  MainScreenController changeIndex = Get.put(
-    MainScreenController(),
-  );
 
   @override
   Widget build(BuildContext context) {
@@ -388,7 +386,11 @@ class BottomNavigation extends StatelessWidget {
               children: [
                 InkWell(
                   onTap: () {
-                    changeIndex.iconStates.value = [true, false, false];
+                    mainScreenController.iconStates.value = [
+                      true,
+                      false,
+                      false
+                    ];
                     changeScreenIndex.value(0);
                     ;
                   },
@@ -398,7 +400,7 @@ class BottomNavigation extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SvgPicture.asset(
-                          changeIndex.iconStates[0]
+                          mainScreenController.iconStates[0]
                               ? Assets.icons.homeBold.path
                               : Assets.icons.home.path,
                           color: AppColors.defaultColorWhite,
@@ -413,7 +415,11 @@ class BottomNavigation extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {
-                    changeIndex.iconStates.value = [false, true, false];
+                    mainScreenController.iconStates.value = [
+                      false,
+                      true,
+                      false
+                    ];
                   },
                   child: SizedBox(
                     width: 80,
@@ -421,7 +427,7 @@ class BottomNavigation extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SvgPicture.asset(
-                          changeIndex.iconStates[1]
+                          mainScreenController.iconStates[1]
                               ? Assets.icons.editBold.path
                               : Assets.icons.edit.path,
                           color: AppColors.defaultColorWhite,
@@ -436,7 +442,11 @@ class BottomNavigation extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {
-                    changeIndex.iconStates.value = [false, false, true];
+                    mainScreenController.iconStates.value = [
+                      false,
+                      false,
+                      true
+                    ];
                     changeScreenIndex.value(1);
                   },
                   child: SizedBox(
@@ -445,7 +455,7 @@ class BottomNavigation extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SvgPicture.asset(
-                          changeIndex.iconStates[2]
+                          mainScreenController.iconStates[2]
                               ? Assets.icons.profileBold.path
                               : Assets.icons.profile.path,
                           color: AppColors.defaultColorWhite,

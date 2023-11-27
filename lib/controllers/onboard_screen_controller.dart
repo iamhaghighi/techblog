@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:techblog/gen/assets.gen.dart';
-import 'package:techblog/onBoard/onboard_model.dart';
+import 'package:techblog/models/onboard_model.dart';
 
 class OnBoardScreenController extends GetxController {
   RxInt currentIndex = 0.obs;

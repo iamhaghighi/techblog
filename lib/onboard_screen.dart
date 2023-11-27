@@ -4,7 +4,7 @@ import 'package:techblog/components/colors.dart';
 import 'package:techblog/components/size.dart';
 import 'package:techblog/components/text_style.dart';
 import 'package:techblog/main.dart';
-import 'package:techblog/onBoard/onboard_screen_controller.dart';
+import 'package:techblog/controllers/onboard_screen_controller.dart';
 
 class OnBoardScreen extends StatelessWidget {
   OnBoardScreen({super.key});
@@ -18,73 +18,72 @@ class OnBoardScreen extends StatelessWidget {
       () => Scaffold(
         backgroundColor: AppColors.defaultColorWhite,
         body: SafeArea(
-            child: Column(
-              children: [
-                buildDots(),
-                pageViewBuilder(),
-                onBoardScreenController.currentIndex <
-                        onBoardScreenController.onBoardModelList.length - 1
-                    ? Padding(
-                        padding: const EdgeInsets.fromLTRB(
-                          AppSize.bodyPaddingLeft,
-                          0,
-                          AppSize.bodyPaddingRight,
-                          0,
-                        ),
-                        child: SizedBox(
-                          width: double.infinity,
-                          child: ElevatedButton(
-                            style: const ButtonStyle(
-                              backgroundColor: MaterialStatePropertyAll(
-                                AppColors.primaryColor,
-                              ),
-                            ),
-                            onPressed: () {
-                              onBoardScreenController.controller.value.nextPage(
-                                duration: const Duration(milliseconds: 200),
-                                curve: Curves.linear,
-                              );
-                            },
-                            child: Text(
-                              "بعدی",
-                              style: AppTextStyle.heading1(
-                                color: AppColors.defaultColorWhite,
-                              ),
+          child: Column(
+            children: [
+              buildDots(),
+              pageViewBuilder(),
+              onBoardScreenController.currentIndex <
+                      onBoardScreenController.onBoardModelList.length - 1
+                  ? Padding(
+                      padding: const EdgeInsets.fromLTRB(
+                        AppSize.bodyPaddingLeft,
+                        0,
+                        AppSize.bodyPaddingRight,
+                        0,
+                      ),
+                      child: SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          style: const ButtonStyle(
+                            backgroundColor: MaterialStatePropertyAll(
+                              AppColors.primaryColor,
                             ),
                           ),
-                        ),
-                      )
-                    : Padding(
-                        padding: const EdgeInsets.fromLTRB(
-                          AppSize.bodyPaddingLeft,
-                          0,
-                          AppSize.bodyPaddingRight,
-                          0,
-                        ),
-                        child: SizedBox(
-                          width: double.infinity,
-                          child: ElevatedButton(
-                            style: const ButtonStyle(
-                              backgroundColor: MaterialStatePropertyAll(
-                                AppColors.primaryColor,
-                              ),
-                            ),
-                            onPressed: () {
-                              Get.offAndToNamed(routeMainScreen);
-                            },
-                            child: Text(
-                              "بریم شروع کنیم",
-                              style: AppTextStyle.heading1(
-                                color: AppColors.defaultColorWhite,
-                              ),
+                          onPressed: () {
+                            onBoardScreenController.controller.value.nextPage(
+                              duration: const Duration(milliseconds: 200),
+                              curve: Curves.linear,
+                            );
+                          },
+                          child: Text(
+                            "بعدی",
+                            style: AppTextStyle.heading1(
+                              color: AppColors.defaultColorWhite,
                             ),
                           ),
                         ),
                       ),
-              ],
-            ),
+                    )
+                  : Padding(
+                      padding: const EdgeInsets.fromLTRB(
+                        AppSize.bodyPaddingLeft,
+                        0,
+                        AppSize.bodyPaddingRight,
+                        0,
+                      ),
+                      child: SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          style: const ButtonStyle(
+                            backgroundColor: MaterialStatePropertyAll(
+                              AppColors.primaryColor,
+                            ),
+                          ),
+                          onPressed: () {
+                            Get.offAndToNamed(routeMainScreen);
+                          },
+                          child: Text(
+                            "بریم شروع کنیم",
+                            style: AppTextStyle.heading1(
+                              color: AppColors.defaultColorWhite,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+            ],
           ),
-      
+        ),
       ),
     );
   }
@@ -151,7 +150,6 @@ class OnBoardScreen extends StatelessWidget {
                     image: AssetImage(
                       onBoardScreenController.onBoardModelList[index].image,
                     ),
-    
                   ),
                 ),
                 const SizedBox(height: 20),

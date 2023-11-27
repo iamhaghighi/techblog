@@ -5,11 +5,13 @@ import 'package:techblog/components/colors.dart';
 import 'package:techblog/components/components.dart';
 import 'package:techblog/components/size.dart';
 import 'package:techblog/components/text_style.dart';
+import 'package:techblog/controllers/main/home_screen_controller.dart';
 import 'package:techblog/gen/assets.gen.dart';
-import 'package:techblog/models/fakeModel.dart';
 
 class ArticleScreen extends StatelessWidget {
-  const ArticleScreen({super.key});
+ ArticleScreen({super.key});
+
+  final homeScreenController = Get.find<HomeScreenController>();
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +39,7 @@ class ArticleScreen extends StatelessWidget {
                 SizedBox(
                   height: Get.height / 1,
                   child: ListView.builder(
-                    itemCount: fakeModelBlogList.length,
+                    itemCount: homeScreenController.fakeModelBlogList.length,
                     physics: const BouncingScrollPhysics(),
                     itemBuilder: (context, index) {
                       return Column(
@@ -55,14 +57,14 @@ class ArticleScreen extends StatelessWidget {
                               ),
                               child: Image(
                                 image:
-                                    AssetImage(fakeModelBlogList[index].image),
+                                    AssetImage(homeScreenController.fakeModelBlogList[index].image),
                                 fit: BoxFit.cover,
                               ),
                             ),
                           ),
                           const SizedBox(height: 5),
                           Text(
-                            fakeModelBlogList[index].title,
+                            homeScreenController.fakeModelBlogList[index].title,
                             style: AppTextStyle.subTitle(
                               color: AppColors.defaultColorBlack,
                             ),
@@ -71,7 +73,7 @@ class ArticleScreen extends StatelessWidget {
                           ),
                           const SizedBox(height: 5),
                           authorAndView(
-                            author: fakeModelBlogList[index].author,
+                            author: homeScreenController.fakeModelBlogList[index].author,
                             view: "21456",
                             authorAndViewColor: AppColors.defaultColorBlack
                           ),

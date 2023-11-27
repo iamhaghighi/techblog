@@ -5,14 +5,18 @@ import 'package:techblog/components/colors.dart';
 import 'package:techblog/components/components.dart';
 import 'package:techblog/components/size.dart';
 import 'package:techblog/components/text_style.dart';
+import 'package:techblog/controllers/main/home_screen_controller.dart';
 import 'package:techblog/gen/assets.gen.dart';
 import 'package:techblog/main.dart';
-import 'package:techblog/models/fakeModel.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({
+  HomeScreen({
     super.key,
   });
+
+  final HomeScreenController homeScreenController = Get.put(
+    HomeScreenController(),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +41,9 @@ class HomeScreen extends StatelessWidget {
                   centerPngIcon: Assets.icons.logoPng.path,
                   centerPngIconScale: 4,
                   leftSvgIconHeight: 20,
+                  rightOnTap: () {
+                    homeScreenController.key!.currentState!.openDrawer();
+                  },
                 ),
                 SizedBox(height: AppSize.bodyHeight),
                 // cover
@@ -77,15 +84,17 @@ class HomeScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "یک منبع موثق، زمان معرفی GTA 6 رو لوداد. اولین تریلر هم در راه است.",
+                              homeScreenController.homeScreenCoverMap['title'],
                               style: AppTextStyle.title(),
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                             ),
                             const SizedBox(height: 15),
                             authorAndView(
-                              author: "محمد حقیقی",
-                              view: "25678",
+                              author: homeScreenController
+                                  .homeScreenCoverMap['author'],
+                              view: homeScreenController
+                                  .homeScreenCoverMap['view'],
                             ),
                           ],
                         ),
@@ -93,20 +102,19 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: AppSize.bodyHeight),
               ],
             ),
           ),
           // TAGS
+          SizedBox(height: AppSize.bodyHeight),
           tags(
-            modeList: fakeModelTagsList,
+            modeList: homeScreenController.fakeModelTagsList,
             listViewSizedBoxHeight: 60,
             isPadding: true,
             leftPadding: AppSize.bodyPaddingLeft,
             rightPadding: AppSize.bodyPaddingRight,
-            betweenWidgetWidth: AppSize.betweenWidgetWidth
+            betweenWidgetWidth: AppSize.betweenWidgetWidth,
           ),
-          SizedBox(height: AppSize.bodyHeight - 20),
           // blog
           InkWell(
             onTap: () {
@@ -125,7 +133,7 @@ class HomeScreen extends StatelessWidget {
           ),
           SizedBox(height: AppSize.bodyHeight - 20),
           viewContentBox(
-            modelList: fakeModelBlogList,
+            modelList: homeScreenController.fakeModelBlogList,
             isPadding: true,
             rightPadding: AppSize.bodyPaddingRight,
             leftPadding: AppSize.bodyPaddingLeft,
@@ -146,7 +154,7 @@ class HomeScreen extends StatelessWidget {
           ),
           SizedBox(height: AppSize.bodyHeight - 20),
           viewContentBox(
-            modelList: fakeModelPodcastList,
+            modelList: homeScreenController.fakeModelPodcastList,
             isPadding: true,
             rightPadding: AppSize.bodyPaddingRight,
             leftPadding: AppSize.bodyPaddingLeft,

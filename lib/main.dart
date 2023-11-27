@@ -1,16 +1,12 @@
-// TODO: splash screen
-// TODO: change FakeModelView
-// TODO: binding and Controller for views
-// TODO: dynamic onBoard
-// TODO: drawer
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:techblog/bindings.dart';
 import 'package:techblog/components/gestures.dart';
-import 'package:techblog/onBoard/onboard_screen.dart';
-import 'package:techblog/splash_screen.dart';
+import 'package:techblog/onboard_screen.dart';
 import 'package:techblog/views/article/article_screen.dart';
+import 'package:techblog/views/main/home_screen.dart';
 import 'package:techblog/views/main/main_screen.dart';
+import 'package:techblog/views/main/profile_screen.dart';
 
 void main() {
   runApp(const MainApp());
@@ -27,19 +23,29 @@ class MainApp extends StatelessWidget {
       scrollBehavior: MyCustomScrollBehavior(),
       getPages: [
         GetPage(
+          name: routeHomeScreen,
+          page: () => HomeScreen(),
+          binding: HomeScreenBindings(),
+        ),
+        GetPage(
           name: routeArticleScreen,
-          page: () => const ArticleScreen(),
+          page: () => ArticleScreen(),
         ),
         GetPage(
           name: routeMainScreen,
           page: () => MainScreen(),
+          binding: MainScreenBindings()
         ),
         GetPage(
           name: routeOnBoardScreen,
           page: () => OnBoardScreen(),
         ),
+        GetPage(
+          name: routeProfileScreen,
+          page: () => ProfileScreen(),
+        ),
       ],
-      home: OnBoardScreen(),
+      home: MainScreen(),
     );
   }
 }
@@ -47,3 +53,5 @@ class MainApp extends StatelessWidget {
 String routeMainScreen = "/MainScreen";
 String routeArticleScreen = "/ArticleScreen";
 String routeOnBoardScreen = "/OnBoardScreen";
+String routeHomeScreen = "/HomeScreen";
+String routeProfileScreen = "/ProfileScreen";

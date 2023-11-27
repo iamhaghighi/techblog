@@ -9,11 +9,12 @@ class AppColors {
   static const Color quaternaryColor = Color(0XFF3259BA);
   static const Color quinaryColor = Color(0xFF0B111F);
 
-  static const defaultColorWhite = Colors.white;
-  static const defaultColorBlack = Colors.black;
-  static const navBottomShadow = Color(0xA73259BA);
-  static const warningColor = Color(0XFFFF264B);
-  static const profileSettingBoxShadow = Color.fromARGB(15, 0, 0, 0);
+  static const Color defaultColorWhite = Colors.white;
+  static const Color defaultColorBlack = Colors.black;
+  static const Color navBottomShadow = Color(0xA73259BA);
+  static const Color warningColor = Color(0XFFFF264B);
+  static const Color profileSettingBoxShadow = Color.fromARGB(15, 0, 0, 0);
+  static const Color divider = Color.fromARGB(100, 172, 169, 191);
 }
 
 class AppGradient {
