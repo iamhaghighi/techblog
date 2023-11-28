@@ -7,9 +7,12 @@ import 'package:get/get.dart';
 import 'package:techblog/components/colors.dart';
 import 'package:techblog/components/size.dart';
 import 'package:techblog/components/text_style.dart';
+import 'package:techblog/controllers/article/article_content_controller.dart';
+import 'package:techblog/controllers/article/article_screen_controller.dart';
 import 'package:techblog/controllers/main/main_screen_controller.dart';
 import 'package:techblog/gen/assets.gen.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:techblog/main.dart';
 
 Widget getWidgetRight({
   required String? rightSvgIcon,
@@ -173,16 +176,17 @@ Widget iconWithTitle({
   );
 }
 
-Widget tags(
-    {required List modeList,
-    required double listViewSizedBoxHeight,
-    Axis scrollDirection = Axis.horizontal,
-    bool isPadding = false,
-    double leftPadding = 0,
-    double rightPadding = 0,
-    double betweenWidgetWidth = 0,
-    Color hashtagContainerColor = AppColors.quinaryColor,
-    Color iconColor = AppColors.defaultColorWhite}) {
+Widget tags({
+  required List modeList,
+  required double listViewSizedBoxHeight,
+  Axis scrollDirection = Axis.horizontal,
+  bool isPadding = false,
+  double leftPadding = 0,
+  double rightPadding = 0,
+  double betweenWidgetWidth = 0,
+  Color hashtagContainerColor = AppColors.quinaryColor,
+  Color iconColor = AppColors.defaultColorWhite,
+}) {
   return SizedBox(
     height: listViewSizedBoxHeight,
     child: ListView.builder(
@@ -208,30 +212,40 @@ Widget tags(
           ),
           child: Column(
             children: [
-              Container(
-                decoration: BoxDecoration(
-                  color: hashtagContainerColor,
-                  borderRadius: BorderRadius.circular(
-                    AppSize.borderRadius,
+              InkWell(
+                onTap: () {
+                  var id = modeList[index].id!;
+                  Get.find<ArticleScreenController>()
+                      .getNewArticleWithTagId(id);
+                  Get.toNamed(routeArticleScreen);
+                  Get.find<ArticleScreenController>().appBarTitleDynamic.value =
+                      modeList[index].title!;
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: hashtagContainerColor,
+                    borderRadius: BorderRadius.circular(
+                      AppSize.borderRadius,
+                    ),
                   ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(12, 5, 12, 5),
-                  child: Row(
-                    children: [
-                      SvgPicture.asset(
-                        Assets.icons.hashtag.path,
-                        width: 13,
-                        color: iconColor,
-                      ),
-                      const SizedBox(
-                        width: AppSize.betweenWidgetWidth,
-                      ),
-                      Text(
-                        modeList[index].title,
-                        style: AppTextStyle.heading2(),
-                      ),
-                    ],
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(12, 5, 12, 5),
+                    child: Row(
+                      children: [
+                        SvgPicture.asset(
+                          Assets.icons.hashtag.path,
+                          width: 13,
+                          color: iconColor,
+                        ),
+                        const SizedBox(
+                          width: AppSize.betweenWidgetWidth,
+                        ),
+                        Text(
+                          modeList[index].title,
+                          style: AppTextStyle.heading2(),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -277,79 +291,88 @@ Widget viewContentBox({
                 : 0,
             0,
           ),
-          child: Column(
-            children: [
-              Stack(
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        width: Get.width / 2.2,
-                        height: Get.height / 4.5,
-                        decoration: BoxDecoration(
-                          borderRadius:
-                              BorderRadius.circular(AppSize.borderRadius),
-                        ),
-                        foregroundDecoration: BoxDecoration(
-                          borderRadius:
-                              BorderRadius.circular(AppSize.borderRadius),
-                          gradient: const LinearGradient(
-                            colors: AppGradient.contentGradient,
-                            begin: Alignment.bottomCenter,
-                            end: Alignment.topCenter,
+          child: GestureDetector(
+            onTap: () {
+              var id = modelList[index].id!;
+              Get.find<ArticleContentController>().getArticleInfo(id);
+              Get.toNamed(routeArticleContent);
+            },
+            child: Column(
+              children: [
+                Stack(
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: Get.width / 2.2,
+                          height: Get.height / 4.5,
+                          decoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.circular(AppSize.borderRadius),
                           ),
-                        ),
-                        child: ClipRRect(
-                          borderRadius:
-                              BorderRadius.circular(AppSize.borderRadius),
-                          child: CachedNetworkImage(
-                            imageUrl: isDifferentVariable ? modelList[index].poster! : modelList[index].image!,
-                            placeholder: (context, url) => myLoading(),
-                            //TODO: Change to SvgIconFav
-                            errorWidget: (context, url, error) => const Icon(
-                              Icons.image_not_supported,
-                            ),
-                            imageBuilder: (context, imageProvider) => Image(
-                              image: imageProvider,
-                              fit: BoxFit.cover,
+                          foregroundDecoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.circular(AppSize.borderRadius),
+                            gradient: const LinearGradient(
+                              colors: AppGradient.contentGradient,
+                              begin: Alignment.bottomCenter,
+                              end: Alignment.topCenter,
                             ),
                           ),
+                          child: ClipRRect(
+                            borderRadius:
+                                BorderRadius.circular(AppSize.borderRadius),
+                            child: CachedNetworkImage(
+                              imageUrl: isDifferentVariable
+                                  ? modelList[index].poster
+                                  : modelList[index].image!,
+                              placeholder: (context, url) => myLoading(),
+                              //TODO: Change to SvgIconFav
+                              errorWidget: (context, url, error) => const Icon(
+                                Icons.image_not_supported,
+                              ),
+                              imageBuilder: (context, imageProvider) => Image(
+                                image: imageProvider,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    width: Get.width / 2.2,
-                    height: Get.height / 4.5,
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(
-                        8,
-                        0,
-                        8,
-                        8,
-                      ),
-                      child: authorAndView(
-                        author: modelList[index].author ?? 'ناشناس',
-                        view: modelList[index].view!,
-                        fontSize: 12,
-                      ),
+                      ],
                     ),
-                  )
-                ],
-              ),
-              const SizedBox(height: 5),
-              SizedBox(
-                width: Get.width / 2.2,
-                child: Text(
-                  modelList[index].title!,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style:
-                      AppTextStyle.subTitle(color: AppColors.defaultColorBlack),
+                    SizedBox(
+                      width: Get.width / 2.2,
+                      height: Get.height / 4.5,
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(
+                          8,
+                          0,
+                          8,
+                          8,
+                        ),
+                        child: authorAndView(
+                          author: modelList[index].author ?? 'ناشناس',
+                          view: modelList[index].view!,
+                          fontSize: 12,
+                        ),
+                      ),
+                    )
+                  ],
                 ),
-              ),
-            ],
+                const SizedBox(height: 5),
+                SizedBox(
+                  width: Get.width / 2.2,
+                  child: Text(
+                    modelList[index].title!,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: AppTextStyle.subTitle(
+                        color: AppColors.defaultColorBlack),
+                  ),
+                ),
+              ],
+            ),
           ),
         );
       },

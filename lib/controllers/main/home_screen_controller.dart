@@ -43,6 +43,3 @@ class HomeScreenController extends GetxController {
     }
   }
 }
-
-class FakeModelBlogPod {
-}

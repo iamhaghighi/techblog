@@ -4,32 +4,39 @@ import 'package:techblog/controllers/main/home_screen_controller.dart';
 import 'package:techblog/controllers/main/main_screen_controller.dart';
 import 'package:techblog/controllers/main/profile_screen_controller.dart';
 
-class HomeScreenBindings implements Bindings {
+import '../../controllers/article/article_content_controller.dart';
+
+class HomeScreenBinding implements Bindings {
   @override
   void dependencies() {
     Get.put(HomeScreenController());
   }
 }
 
-
-class MainScreenBindings implements Bindings {
+class MainScreenBinding implements Bindings {
   @override
   void dependencies() {
     Get.put(MainScreenController());
   }
 }
 
-class ProfileScreenBindings implements Bindings {
+class ProfileScreenBinding implements Bindings {
   @override
   void dependencies() {
     Get.put(ProfileScreenController());
   }
 }
 
-class ArticleScreenBindings implements Bindings {
+class ArticleScreenBinding implements Bindings {
   @override
   void dependencies() {
     Get.put(ArticleScreenController());
   }
 }
 
+class ArticleContentBinding implements Bindings {
+  @override
+  void dependencies() {
+    Get.put((ArticleContentController));
+  }
+}

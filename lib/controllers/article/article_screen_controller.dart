@@ -4,25 +4,43 @@ import 'package:techblog/models/articler_model.dart';
 import 'package:techblog/services/dio_services.dart';
 
 class ArticleScreenController extends GetxController {
-  RxList<ArticleModel> articleItemList = RxList();
+  RxList<ArticleModel> articleList = RxList();
   RxBool loading = true.obs;
+  RxString appBarTitleDynamic = "لیست مقاله ها".obs;
 
   @override
   onInit() {
     super.onInit();
-    getArticleItems();
+    getNewArticle();
   }
 
-  getArticleItems() async {
-    var response = await DioService().getMethod(AppApis.articleItem);
+  getNewArticle() async {
     loading.value = true;
+    var response = await DioService().getMethod(AppApis.newArticle);
+    articleList.clear();
     if (response.statusCode == 200) {
       response.data.forEach(
         (element) {
-          articleItemList.add(ArticleModel.fromJson(element));
-          loading.value = false;
+          articleList.add(ArticleModel.fromJson(element));
         },
       );
+      loading.value = false;
+    }
+  }
+
+  getNewArticleWithTagId(String id) async {
+    loading.value = true;
+    articleList.clear();
+    var response = await DioService().getMethod(
+      "https://techblog.sasansafari.com/Techblog/api/article/get.php?command=get_articles_with_tag_id&tag_id=$id&user_id=1",
+    );
+    if (response.statusCode == 200) {
+      response.data.forEach((element) {
+        articleList.add(
+          ArticleModel.fromJson(element),
+        );
+      });
+      loading.value = false;
     }
   }
 }

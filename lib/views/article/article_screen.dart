@@ -5,12 +5,17 @@ import 'package:techblog/components/colors.dart';
 import 'package:techblog/components/components.dart';
 import 'package:techblog/components/size.dart';
 import 'package:techblog/components/text_style.dart';
+import 'package:techblog/controllers/article/article_content_controller.dart';
 import 'package:techblog/controllers/article/article_screen_controller.dart';
 import 'package:techblog/gen/assets.gen.dart';
+import 'package:techblog/main.dart';
 
 class ArticleScreen extends StatelessWidget {
   ArticleScreen({super.key});
   final articleScreenController = Get.find<ArticleScreenController>();
+  final ArticleContentController articleContentController = Get.put(
+    ArticleContentController(),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -20,32 +25,42 @@ class ArticleScreen extends StatelessWidget {
         () => articleScreenController.loading.value != false
             ? myLoading()
             : SafeArea(
-                child: SingleChildScrollView(
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(
-                      AppSize.bodyPaddingLeft,
-                      AppSize.bodyPaddingTop,
-                      AppSize.bodyPaddingRight,
-                      0,
-                    ),
-                    child: Column(
-                      children: [
-                        appBar(
-                          leftSvgIcon: Assets.icons.left1.path,
-                          rightText: "لیست مقاله ها",
-                          leftIconColor: AppColors.secondaryColor,
-                          rightTextColor: AppColors.secondaryColor,
-                          leftOnTap: () => Get.back(),
-                        ),
-                        SizedBox(height: AppSize.bodyHeight - 10),
-                        SizedBox(
-                          height: Get.height / 1,
-                          child: ListView.builder(
-                            itemCount:
-                                articleScreenController.articleItemList.length,
-                            physics: const BouncingScrollPhysics(),
-                            itemBuilder: (context, index) {
-                              return Column(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(
+                    AppSize.bodyPaddingLeft,
+                    AppSize.bodyPaddingTop,
+                    AppSize.bodyPaddingRight,
+                    0,
+                  ),
+                  child: Column(
+                    children: [
+                      appBar(
+                        leftSvgIcon: Assets.icons.left1.path,
+                        rightText:
+                            articleScreenController.appBarTitleDynamic.value,
+                        leftIconColor: AppColors.secondaryColor,
+                        rightTextColor: AppColors.secondaryColor,
+                        leftOnTap: () {
+                          articleScreenController.appBarTitleDynamic.value =
+                              "لیست مقاله ها";
+                          Get.back();
+                        },
+                      ),
+                      SizedBox(height: AppSize.bodyHeight - 10),
+                      SizedBox(
+                        height: Get.height / 1.13,
+                        child: ListView.builder(
+                          itemCount: articleScreenController.articleList.length,
+                          physics: const BouncingScrollPhysics(),
+                          itemBuilder: (context, index) {
+                            return GestureDetector(
+                              onTap: () {
+                                var id = articleScreenController
+                                    .articleList[index].id!;
+                                articleContentController.getArticleInfo(id);
+                                Get.toNamed(routeArticleContent);
+                              },
+                              child: Column(
                                 children: [
                                   Container(
                                     height: 150,
@@ -60,10 +75,10 @@ class ArticleScreen extends StatelessWidget {
                                       ),
                                       child: CachedNetworkImage(
                                         imageUrl: articleScreenController
-                                            .articleItemList[index].image!,
+                                                .articleList[index].image ??
+                                            "",
                                         imageBuilder: (context, imageProvider) {
-                                          return Container(
-                                            color: Colors.red,
+                                          return SizedBox(
                                             width: double.infinity,
                                             child: Image(
                                               image: imageProvider,
@@ -85,7 +100,8 @@ class ArticleScreen extends StatelessWidget {
                                     width: double.infinity,
                                     child: Text(
                                       articleScreenController
-                                          .articleItemList[index].title!,
+                                              .articleList[index].title ??
+                                          "بدون عنوان",
                                       style: AppTextStyle.subTitle(
                                         color: AppColors.defaultColorBlack,
                                       ),
@@ -96,19 +112,20 @@ class ArticleScreen extends StatelessWidget {
                                   const SizedBox(height: 5),
                                   authorAndView(
                                     author: articleScreenController
-                                        .articleItemList[index].author!,
+                                            .articleList[index].author ??
+                                        "ناشناس",
                                     view: "21456",
                                     authorAndViewColor:
                                         AppColors.defaultColorBlack,
                                   ),
                                   SizedBox(height: AppSize.bodyHeight),
                                 ],
-                              );
-                            },
-                          ),
-                        )
-                      ],
-                    ),
+                              ),
+                            );
+                          },
+                        ),
+                      )
+                    ],
                   ),
                 ),
               ),

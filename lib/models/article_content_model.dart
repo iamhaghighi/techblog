@@ -1,39 +1,31 @@
 import 'package:techblog/components/apis.dart';
 
-class ArticleModel {
+class ArticleContentModel {
   String? id;
   String? title;
+  String? content;
   String? image;
   String? catId;
   String? catName;
   String? author;
   String? view;
   String? status;
-  bool? isFavorite;
   String? createdAt;
+  bool? isFavorite;
 
-  ArticleModel({
-    required this.id,
-    required this.title,
-    required this.image,
-    required this.catId,
-    required this.catName,
-    required this.author,
-    required this.view,
-    required this.status,
-    required this.createdAt,
-  });
+  ArticleContentModel();
 
-  ArticleModel.fromJson(Map<String, dynamic> element) {
+  ArticleContentModel.fromJson(Map<String, dynamic> element) {
     id = element['id'];
     title = element['title'];
+    content = element['content'];
     image = AppApis.baseHostDl + element['image'];
     catId = element['cat_id'];
     catName = element['cat_name'];
     author = element['author'];
     view = element['view'];
     status = element['status'];
-    isFavorite = element['isFavorite'];
     createdAt = element['created_at'];
+    isFavorite = element["isFavorite"];
   }
 }

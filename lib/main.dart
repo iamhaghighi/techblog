@@ -8,6 +8,8 @@ import 'package:techblog/views/main/profile_screen.dart';
 import 'package:techblog/views/other/bindings.dart';
 import 'package:techblog/views/other/onboard_screen.dart';
 
+import 'views/article/article_content.dart';
+
 void main() {
   runApp(const MainApp());
 }
@@ -21,21 +23,22 @@ class MainApp extends StatelessWidget {
       theme: ThemeData(fontFamily: 'dana'),
       debugShowCheckedModeBanner: false,
       scrollBehavior: MyCustomScrollBehavior(),
+      initialBinding: ArticleContentBinding(),
       getPages: [
         GetPage(
           name: routeHomeScreen,
           page: () => HomeScreen(),
-          binding: HomeScreenBindings(),
+          binding: HomeScreenBinding(),
         ),
         GetPage(
           name: routeArticleScreen,
           page: () => ArticleScreen(),
-          binding: ArticleScreenBindings()
+          binding: ArticleScreenBinding(),
         ),
         GetPage(
           name: routeMainScreen,
           page: () => MainScreen(),
-          binding: MainScreenBindings()
+          binding: MainScreenBinding(),
         ),
         GetPage(
           name: routeOnBoardScreen,
@@ -45,6 +48,11 @@ class MainApp extends StatelessWidget {
           name: routeProfileScreen,
           page: () => ProfileScreen(),
         ),
+        GetPage(
+          name: routeArticleContent,
+          page: () => ArticleContent(),
+          binding: ArticleContentBinding(),
+        )
       ],
       home: MainScreen(),
     );
@@ -56,3 +64,4 @@ String routeArticleScreen = "/ArticleScreen";
 String routeOnBoardScreen = "/OnBoardScreen";
 String routeHomeScreen = "/HomeScreen";
 String routeProfileScreen = "/ProfileScreen";
+String routeArticleContent = "/ArticleContent";
