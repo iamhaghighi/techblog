@@ -1,5 +1,8 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:techblog/components/colors.dart';
 import 'package:techblog/components/gestures.dart';
 import 'package:techblog/views/article/article_screen.dart';
 import 'package:techblog/views/main/home_screen.dart';
@@ -20,7 +23,21 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       locale: const Locale('fa', 'IR'),
-      theme: ThemeData(fontFamily: 'dana'),
+      theme: ThemeData(
+        fontFamily: 'dana',
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ButtonStyle(
+            backgroundColor: const MaterialStatePropertyAll(
+              AppColors.primaryColor,
+            ),
+            shape: MaterialStatePropertyAll(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(5)
+              )
+            )
+          ),
+        ),
+      ),
       debugShowCheckedModeBanner: false,
       scrollBehavior: MyCustomScrollBehavior(),
       initialBinding: ArticleContentBinding(),

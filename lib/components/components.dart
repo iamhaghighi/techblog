@@ -232,8 +232,7 @@ Widget tags({
                     padding: const EdgeInsets.fromLTRB(12, 5, 12, 5),
                     child: Row(
                       children: [
-                        SvgPicture.asset(
-                          Assets.icons.hashtag.path,
+                        Assets.icons.hashtag.svg(
                           width: 13,
                           color: iconColor,
                         ),
@@ -451,6 +450,7 @@ class BottomNavigation extends StatelessWidget {
                       true,
                       false
                     ];
+                    navBottomSheet();
                   },
                   child: SizedBox(
                     width: 80,
@@ -506,6 +506,95 @@ class BottomNavigation extends StatelessWidget {
       ),
     );
   }
+}
+
+Future<dynamic> navBottomSheet() {
+  return Get.bottomSheet(
+    Container(
+      height: Get.height / 3,
+      width: Get.width / 1,
+      decoration: const BoxDecoration(
+        color: AppColors.bg,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(AppSize.borderRadius + 5),
+          topRight: Radius.circular(AppSize.borderRadius + 5),
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(15, 10, 15, 0),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Assets.icons.bot.image(
+                  scale: 20,
+                ),
+                const SizedBox(width: AppSize.betweenWidgetWidth),
+                Text(
+                  "دونسته هات رو به اشتراک بزار",
+                  style: AppTextStyle.heading1(
+                    color: AppColors.defaultColorBlack,
+                  ),
+                ),
+              ],
+            ),
+            Text(
+              "فکر کن !!  اینجا بودنت به این معناست که یک گیک تکنولوژی هستیدونسته هات رو با  جامعه‌ی گیک های فارسی زبان به اشتراک بذار..",
+              style: AppTextStyle.heading2(
+                color: AppColors.defaultColorBlack,
+              ),
+              textAlign: TextAlign.justify,
+            ),
+            SizedBox(
+              height: AppSize.bodyHeight,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                InkWell(
+                  onTap: () {},
+                  child: SizedBox(
+                    height: 50,
+                    child: Row(
+                      children: [
+                        SvgPicture.asset(
+                          Assets.icons.documentManage.path,
+                        ),
+                        const SizedBox(
+                          height: 30,
+                          child: Text("مدیریت مقاله"),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {},
+                  child: SizedBox(
+                    height: 50,
+                    child: Row(
+                      children: [
+                        SvgPicture.asset(
+                          Assets.icons.voiceManage.path,
+                          width: 30,
+                        ),
+                        const SizedBox(
+                          height: 30,
+                          child: Text(
+                            "مدیریت پادکست",
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
 }
 
 Widget authorAndView({

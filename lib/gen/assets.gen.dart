@@ -30,6 +30,13 @@ class $AssetsIconsGen {
   /// File path: assets/icons/bookmark.svg
   SvgGenImage get bookmark => const SvgGenImage('assets/icons/bookmark.svg');
 
+  /// File path: assets/icons/bot.png
+  AssetGenImage get bot => const AssetGenImage('assets/icons/bot.png');
+
+  /// File path: assets/icons/documentManage.svg
+  SvgGenImage get documentManage =>
+      const SvgGenImage('assets/icons/documentManage.svg');
+
   /// File path: assets/icons/edit.svg
   SvgGenImage get edit => const SvgGenImage('assets/icons/edit.svg');
 
@@ -53,6 +60,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/left2.svg
   SvgGenImage get left2 => const SvgGenImage('assets/icons/left2.svg');
+
+  /// File path: assets/icons/line.png
+  AssetGenImage get line => const AssetGenImage('assets/icons/line.png');
 
   /// File path: assets/icons/logo.png
   AssetGenImage get logoPng => const AssetGenImage('assets/icons/logo.png');
@@ -101,6 +111,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/share.png
   AssetGenImage get share => const AssetGenImage('assets/icons/share.png');
 
+  /// File path: assets/icons/voiceManage.svg
+  SvgGenImage get voiceManage =>
+      const SvgGenImage('assets/icons/voiceManage.svg');
+
   /// List of all assets
   List<dynamic> get values => [
         left1,
@@ -108,6 +122,8 @@ class $AssetsIconsGen {
         addPhotoPng,
         addPhotoSvg,
         bookmark,
+        bot,
+        documentManage,
         edit,
         edit2,
         editBold,
@@ -116,6 +132,7 @@ class $AssetsIconsGen {
         home,
         homeBold,
         left2,
+        line,
         logoPng,
         logoSvg,
         logoWithText,
@@ -129,7 +146,8 @@ class $AssetsIconsGen {
         profileBold,
         profileCircle,
         search,
-        share
+        share,
+        voiceManage
       ];
 }
 

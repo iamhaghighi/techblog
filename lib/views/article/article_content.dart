@@ -127,7 +127,6 @@ class ArticleContent extends StatelessWidget {
               ),
               SizedBox(height: AppSize.bodyHeight),
               viewContentBox(
-                //TODO: change to relatedList. after
                 modelList: articleContentController.relatedList,
                 isPadding: true,
                 rightPadding: AppSize.bodyPaddingRight - 5,

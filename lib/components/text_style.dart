@@ -4,30 +4,37 @@ import 'package:techblog/components/colors.dart';
 class AppTextStyle {
   static TextStyle title({
     Color color = AppColors.defaultColorWhite,
-    double fontSize = 14
+    double fontSize = 14,
+    FontWeight fontWeight = FontWeight.w600,
   }) {
     return TextStyle(
       fontSize: fontSize,
       color: color,
-      fontWeight: FontWeight.w600,
+      fontWeight: fontWeight,
     );
   }
 
   static TextStyle subTitle({
     Color color = AppColors.defaultColorWhite,
+    double fontSize = 14,
+    FontWeight fontWeight = FontWeight.w400,
   }) {
     return TextStyle(
       color: color,
-      fontWeight: FontWeight.w400,
+      fontSize: fontSize,
+      fontWeight: fontWeight,
     );
   }
 
   static TextStyle heading1({
     Color color = AppColors.defaultColorWhite,
+    double fontSize = 14,
+    FontWeight fontWeight = FontWeight.w500,
   }) {
     return TextStyle(
       color: color,
-      fontWeight: FontWeight.w500,
+      fontSize: fontSize,
+      fontWeight: fontWeight,
     );
   }
 
@@ -38,8 +45,8 @@ class AppTextStyle {
   }) {
     return TextStyle(
       color: color,
-      fontWeight: fontWeight,
       fontSize: fontSize,
+      fontWeight: fontWeight,
     );
   }
 }
