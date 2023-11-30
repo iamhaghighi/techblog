@@ -23,120 +23,122 @@ class ArticleContent extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.bg,
       body: Obx(
-        () => articleContentController.loading.value != false ? myLoading() : SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          child: Column(
-            children: [
-              Stack(
-                children: [
-                  Container(
-                    height: Get.height / 3,
-                    width: double.infinity,
-                    foregroundDecoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: AppGradient.primaryGradient,
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        stops: <double>[0.01, 1],
-                      ),
-                    ),
-                    child: CachedNetworkImage(
-                      imageUrl: articleContentController.articleInfo.value.image!,
-                      fit: BoxFit.cover,
-                      placeholder: (context, err) => myLoading(),
-                      // TODO: Fix This
-                      errorWidget: (context, err, icon) => const Icon(
-                        Icons.image_not_supported,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(
-                      AppSize.bodyPaddingLeft - 5,
-                      AppSize.bodyPaddingTop - 10,
-                      AppSize.bodyPaddingRight - 5,
-                      0,
-                    ),
-                    child: appBar(
-                      leftSvgIcon: Assets.icons.left1.path,
-                      leftIconColor: AppColors.defaultColorWhite,
-                      rightIcon: Icons.share,
-                      rightIconColor: AppColors.defaultColorWhite,
-                      rightLeftSvgIcon: Assets.icons.bookmark.path,
-                      rightLeftSvgIconColor: AppColors.defaultColorWhite,
-                      rightIconSize: 23,
-                      leftOnTap: () => Get.back(),
-                    ),
-                  )
-                ],
-              ),
-              SizedBox(height: AppSize.bodyHeight - 15),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(
-                  AppSize.bodyPaddingLeft - 5,
-                  0,
-                  AppSize.bodyPaddingRight - 5,
-                  0,
-                ),
+        () => articleContentController.loading.value != false
+            ? myLoading()
+            : SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      articleContentController.articleInfo.value.title!,
-                      style:
-                          AppTextStyle.title(color: AppColors.defaultColorBlack),
-                    ),
-                    SizedBox(height: AppSize.bodyHeight - 20),
-                    Row(
+                    Stack(
                       children: [
-                        SvgPicture.asset(
-                          Assets.icons.profile.path,
-                          height: 15,
+                        Container(
+                          height: Get.height / 3,
+                          width: double.infinity,
+                          foregroundDecoration: const BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: AppGradient.primaryGradient,
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                              stops: <double>[0.01, 1],
+                            ),
+                          ),
+                          child: CachedNetworkImage(
+                            imageUrl: articleContentController
+                                .articleInfo.value.image!,
+                            fit: BoxFit.cover,
+                            placeholder: (context, err) => myLoading(),
+                            errorWidget: (context, err, icon) =>
+                                Assets.icons.imageNotSupported.image(),
+                          ),
                         ),
-                        const SizedBox(
-                          width: AppSize.betweenWidgetWidth,
-                        ),
-                        Text(
-                          "${articleContentController.articleInfo.value.author!} - ${articleContentController.articleInfo.value.createdAt!}",
-                          style: AppTextStyle.heading2(
-                            color: AppColors.defaultColorBlack,
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(
+                            AppSize.bodyPaddingLeft - 5,
+                            AppSize.bodyPaddingTop - 10,
+                            AppSize.bodyPaddingRight - 5,
+                            0,
+                          ),
+                          child: appBar(
+                            leftSvgIcon: Assets.icons.left1.path,
+                            leftIconColor: AppColors.defaultColorWhite,
+                            rightIcon: Icons.share,
+                            rightIconColor: AppColors.defaultColorWhite,
+                            rightLeftSvgIcon: Assets.icons.bookmark.path,
+                            rightLeftSvgIconColor: AppColors.defaultColorWhite,
+                            rightIconSize: 23,
+                            leftOnTap: () => Get.back(),
                           ),
                         )
                       ],
                     ),
-                    SizedBox(height: AppSize.bodyHeight - 20),
-                    HtmlWidget(
-                      """<p style="text-align: justify;">${articleContentController.articleInfo.value.content!}</p>""",
-                      textStyle: AppTextStyle.heading2(
-                          color: AppColors.defaultColorBlack),
-                      enableCaching: true,
-                      onLoadingBuilder: (context, element, loadingProgress) =>
-                          myLoading(),
+                    SizedBox(height: AppSize.bodyHeight - 15),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(
+                        AppSize.bodyPaddingLeft - 5,
+                        0,
+                        AppSize.bodyPaddingRight - 5,
+                        0,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            articleContentController.articleInfo.value.title!,
+                            style: AppTextStyle.title(
+                                color: AppColors.defaultColorBlack),
+                          ),
+                          SizedBox(height: AppSize.bodyHeight - 20),
+                          Row(
+                            children: [
+                              SvgPicture.asset(
+                                Assets.icons.profile.path,
+                                height: 15,
+                              ),
+                              const SizedBox(
+                                width: AppSize.betweenWidgetWidth,
+                              ),
+                              Text(
+                                "${articleContentController.articleInfo.value.author!} - ${articleContentController.articleInfo.value.createdAt!}",
+                                style: AppTextStyle.heading2(
+                                  color: AppColors.defaultColorBlack,
+                                ),
+                              )
+                            ],
+                          ),
+                          SizedBox(height: AppSize.bodyHeight - 20),
+                          HtmlWidget(
+                            """<p style="text-align: justify;">${articleContentController.articleInfo.value.content!}</p>""",
+                            textStyle: AppTextStyle.heading2(
+                                color: AppColors.defaultColorBlack),
+                            enableCaching: true,
+                            onLoadingBuilder:
+                                (context, element, loadingProgress) =>
+                                    myLoading(),
+                          ),
+                        ],
+                      ),
                     ),
+                    SizedBox(height: AppSize.bodyHeight),
+                    tags(
+                      modeList: articleContentController.tagsList,
+                      listViewSizedBoxHeight: 60,
+                      isPadding: true,
+                      rightPadding: AppSize.bodyPaddingRight - 5,
+                      leftPadding: AppSize.bodyPaddingLeft - 5,
+                      betweenWidgetWidth: AppSize.betweenWidgetWidth,
+                    ),
+                    SizedBox(height: AppSize.bodyHeight),
+                    viewContentBox(
+                      modelList: articleContentController.relatedList,
+                      isPadding: true,
+                      rightPadding: AppSize.bodyPaddingRight - 5,
+                      leftPadding: AppSize.bodyPaddingLeft - 5,
+                      betweenWidgetWidth: AppSize.betweenWidgetWidth,
+                    ),
+                    SizedBox(height: AppSize.bodyHeight),
                   ],
                 ),
               ),
-              SizedBox(height: AppSize.bodyHeight),
-              tags(
-                modeList: articleContentController.tagsList,
-                listViewSizedBoxHeight: 60,
-                isPadding: true,
-                rightPadding: AppSize.bodyPaddingRight - 5,
-                leftPadding: AppSize.bodyPaddingLeft - 5,
-                betweenWidgetWidth: AppSize.betweenWidgetWidth,
-              ),
-              SizedBox(height: AppSize.bodyHeight),
-              viewContentBox(
-                modelList: articleContentController.relatedList,
-                isPadding: true,
-                rightPadding: AppSize.bodyPaddingRight - 5,
-                leftPadding: AppSize.bodyPaddingLeft - 5,
-                betweenWidgetWidth: AppSize.betweenWidgetWidth,
-              ),
-              SizedBox(height: AppSize.bodyHeight),
-            ],
-          ),
-        ),
       ),
     );
   }

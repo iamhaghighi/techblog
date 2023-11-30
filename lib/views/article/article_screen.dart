@@ -48,7 +48,7 @@ class ArticleScreen extends StatelessWidget {
                       ),
                       SizedBox(height: AppSize.bodyHeight - 10),
                       SizedBox(
-                        height: Get.height / 1.13,
+                        height: Get.height / 1.131,
                         child: ListView.builder(
                           itemCount: articleScreenController.articleList.length,
                           physics: const BouncingScrollPhysics(),

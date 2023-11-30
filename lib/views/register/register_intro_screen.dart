@@ -3,10 +3,15 @@ import 'package:get/get.dart';
 import 'package:techblog/components/colors.dart';
 import 'package:techblog/components/size.dart';
 import 'package:techblog/components/text_style.dart';
+import 'package:techblog/controllers/register/register_intro_screen_controller.dart';
 import 'package:techblog/gen/assets.gen.dart';
 
-class RegIntro extends StatelessWidget {
-  const RegIntro({super.key});
+class RegisterIntro extends StatelessWidget {
+  RegisterIntro({super.key});
+
+  final RegisterIntroScreenController registerManagerController = Get.put(
+    RegisterIntroScreenController(),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -77,6 +82,8 @@ class RegIntro extends StatelessWidget {
               width: Get.width / 1.3,
               height: Get.height / 19,
               child: TextField(
+                controller: registerManagerController
+                    .registerEmailTextEditingController,
                 onSubmitted: (value) {
                   Navigator.pop(context);
                   activeCodeBottomSheet();
@@ -108,6 +115,7 @@ class RegIntro extends StatelessWidget {
               onPressed: () {
                 Navigator.pop(context);
                 activeCodeBottomSheet();
+                registerManagerController.registerEmail();
               },
               child: Text(
                 "بعدی",
@@ -146,6 +154,8 @@ class RegIntro extends StatelessWidget {
               width: Get.width / 1.3,
               height: Get.height / 19,
               child: TextField(
+                controller:
+                    registerManagerController.verifyCodeTextEditingController,
                 onSubmitted: (value) {},
                 style: AppTextStyle.heading1(
                   color: AppColors.defaultColorBlack,
@@ -170,7 +180,9 @@ class RegIntro extends StatelessWidget {
               height: AppSize.bodyHeight,
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                registerManagerController.verifyCode();
+              },
               child: Text(
                 "بعدی",
                 style: AppTextStyle.heading1(),

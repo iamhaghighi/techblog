@@ -6,4 +6,7 @@ class AppApis {
   //! moved to contentController
   // static const articleItemContent =
   //     "${base}article/get.php?command=info&id=1&user_id=1";
+
+  static const registerAndVerifyCode =
+      "https://techblog.sasansafari.com/Techblog/api/register/action.php";
 }

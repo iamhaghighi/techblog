@@ -58,6 +58,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/homeBold.svg
   SvgGenImage get homeBold => const SvgGenImage('assets/icons/homeBold.svg');
 
+  /// File path: assets/icons/imageNotSupported.png
+  AssetGenImage get imageNotSupported =>
+      const AssetGenImage('assets/icons/imageNotSupported.png');
+
   /// File path: assets/icons/left2.svg
   SvgGenImage get left2 => const SvgGenImage('assets/icons/left2.svg');
 
@@ -131,6 +135,7 @@ class $AssetsIconsGen {
         hashtag,
         home,
         homeBold,
+        imageNotSupported,
         left2,
         line,
         logoPng,

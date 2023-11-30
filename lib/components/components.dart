@@ -9,7 +9,6 @@ import 'package:techblog/components/size.dart';
 import 'package:techblog/components/text_style.dart';
 import 'package:techblog/controllers/article/article_content_controller.dart';
 import 'package:techblog/controllers/article/article_screen_controller.dart';
-import 'package:techblog/controllers/main/main_screen_controller.dart';
 import 'package:techblog/gen/assets.gen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:techblog/main.dart';
@@ -327,10 +326,8 @@ Widget viewContentBox({
                                   ? modelList[index].poster
                                   : modelList[index].image!,
                               placeholder: (context, url) => myLoading(),
-                              //TODO: Change to SvgIconFav
-                              errorWidget: (context, url, error) => const Icon(
-                                Icons.image_not_supported,
-                              ),
+                              errorWidget: (context, url, error) =>
+                                  Assets.icons.imageNotSupported.image(),
                               imageBuilder: (context, imageProvider) => Image(
                                 image: imageProvider,
                                 fit: BoxFit.cover,
@@ -379,136 +376,7 @@ Widget viewContentBox({
   );
 }
 
-final mainScreenController = Get.find<MainScreenController>();
-
-class BottomNavigation extends StatelessWidget {
-  BottomNavigation({
-    super.key,
-    required this.changeScreenIndex,
-  });
-
-  Rx<int Function(int)> changeScreenIndex;
-
-  @override
-  Widget build(BuildContext context) {
-    return Positioned(
-      bottom: 0,
-      left: 0,
-      right: 0,
-      child: Container(
-        decoration: const BoxDecoration(
-          color: AppColors.quaternaryColor,
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.navBottomShadow,
-              spreadRadius: 0,
-              blurRadius: 20,
-              offset: Offset(0, 0), // changes position of shadow
-            ),
-          ],
-        ),
-        height: 65,
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(15, 3, 15, 0),
-          child: Obx(
-            () => Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                InkWell(
-                  onTap: () {
-                    mainScreenController.iconStates.value = [
-                      true,
-                      false,
-                      false
-                    ];
-                    changeScreenIndex.value(0);
-                    ;
-                  },
-                  child: SizedBox(
-                    width: 80,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SvgPicture.asset(
-                          mainScreenController.iconStates[0]
-                              ? Assets.icons.homeBold.path
-                              : Assets.icons.home.path,
-                          color: AppColors.defaultColorWhite,
-                        ),
-                        Text(
-                          "خانه",
-                          style: AppTextStyle.heading2(fontSize: 12),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                InkWell(
-                  onTap: () {
-                    mainScreenController.iconStates.value = [
-                      false,
-                      true,
-                      false
-                    ];
-                    navBottomSheet();
-                  },
-                  child: SizedBox(
-                    width: 80,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SvgPicture.asset(
-                          mainScreenController.iconStates[1]
-                              ? Assets.icons.editBold.path
-                              : Assets.icons.edit.path,
-                          color: AppColors.defaultColorWhite,
-                        ),
-                        Text(
-                          "مقاله نویسی",
-                          style: AppTextStyle.heading2(fontSize: 12),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                InkWell(
-                  onTap: () {
-                    mainScreenController.iconStates.value = [
-                      false,
-                      false,
-                      true
-                    ];
-                    changeScreenIndex.value(1);
-                  },
-                  child: SizedBox(
-                    width: 80,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SvgPicture.asset(
-                          mainScreenController.iconStates[2]
-                              ? Assets.icons.profileBold.path
-                              : Assets.icons.profile.path,
-                          color: AppColors.defaultColorWhite,
-                        ),
-                        Text(
-                          "پروفایل",
-                          style: AppTextStyle.heading2(fontSize: 12),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-Future<dynamic> navBottomSheet() {
+Future<dynamic> articleManagerBottomSheet() {
   return Get.bottomSheet(
     Container(
       height: Get.height / 3,

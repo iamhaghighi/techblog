@@ -23,7 +23,6 @@ class HomeScreen extends StatelessWidget {
   final ArticleScreenController articleScreenController = Get.put(
     ArticleScreenController(),
   );
-
   final ArticleContentController articleContentController = Get.put(
     ArticleContentController(),
   );
@@ -86,11 +85,8 @@ class HomeScreen extends StatelessWidget {
                                   imageUrl: homeScreenController
                                       .posterInfo.value.image!,
                                   placeholder: (context, url) => myLoading(),
-                                  //TODO: change to svgIconFav
                                   errorWidget: (context, url, error) =>
-                                      const Icon(
-                                    Icons.image_not_supported_outlined,
-                                  ),
+                                      Assets.icons.imageNotSupported.image(),
                                   imageBuilder: (context, imageProvider) {
                                     return Image(
                                       image: imageProvider,
