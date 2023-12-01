@@ -420,7 +420,9 @@ Future<dynamic> articleManagerBottomSheet() {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Get.toNamed(routeArticleManager);
+                  },
                   child: SizedBox(
                     height: 50,
                     child: Row(

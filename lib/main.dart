@@ -1,11 +1,12 @@
 // TODO: tooye appBar icon ro ye negahi bendaz. age shod bezaresh Widget
-// TODO: change Svg.Piction to Assets.icon."name".svg()
-
+// TODO: tooye appBar be jaye textColor bezar TextStyle ta user khodesh entekhab kone
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:techblog/components/colors.dart';
 import 'package:techblog/components/gestures.dart';
+import 'package:techblog/views/article/article_manager.dart';
+import 'package:techblog/views/article/article_preview.dart';
 import 'package:techblog/views/register/register_intro_screen.dart';
 import 'package:techblog/views/article/article_screen.dart';
 import 'package:techblog/views/main/home_screen.dart';
@@ -16,7 +17,7 @@ import 'package:techblog/views/other/onboard_screen.dart';
 import 'views/article/article_content.dart';
 
 void main() async {
-  GetStorage.init();
+  await GetStorage.init();
   runApp(const MainApp());
 }
 
@@ -75,6 +76,16 @@ class MainApp extends StatelessWidget {
           binding: RegisterIntroScreenBindings(),
           curve: Curves.bounceIn,
         ),
+        GetPage(
+          name: routeArticleManager,
+          page: () => ArticleManagerScreen(),
+          binding: ArticleContentBinding(),
+        ),
+        GetPage(
+          name: routeArticlePreview,
+          page: () => ArticlePreview(),
+          binding: ArticlePreviewBindings(),
+        ),
       ],
       home: MainScreen(),
     );
@@ -88,3 +99,5 @@ String routeHomeScreen = "/HomeScreen";
 String routeProfileScreen = "/ProfileScreen";
 String routeArticleContent = "/ArticleContent";
 String routeRegisterIntroScreen = "/RegisterIntroScreen";
+String routeArticleManager = "/ArticleManager";
+String routeArticlePreview = "/ArticlePreview";

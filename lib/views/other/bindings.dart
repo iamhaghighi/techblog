@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:techblog/controllers/article/article_manager_controller.dart';
+import 'package:techblog/controllers/article/article_preview_controller.dart';
 import 'package:techblog/controllers/article/article_screen_controller.dart';
 import 'package:techblog/controllers/main/home_screen_controller.dart';
 import 'package:techblog/controllers/main/main_screen_controller.dart';
@@ -48,3 +50,18 @@ class RegisterIntroScreenBindings implements Bindings {
     Get.put((RegisterIntroScreenController));
   }
 }
+
+class ArticleManagerBindings implements Bindings {
+  @override
+  void dependencies() {
+    Get.put((ArticleManagerController));
+  }
+}
+
+class ArticlePreviewBindings implements Bindings {
+  @override
+  void dependencies() {
+    Get.put((ArticlePreviewController));
+  }
+}
+

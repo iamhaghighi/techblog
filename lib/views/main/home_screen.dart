@@ -37,6 +37,7 @@ class HomeScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  // APP BAR & COVER
                   Padding(
                     padding: const EdgeInsets.fromLTRB(
                       AppSize.bodyPaddingLeft,
@@ -60,69 +61,77 @@ class HomeScreen extends StatelessWidget {
                         ),
                         SizedBox(height: AppSize.bodyHeight),
                         // cover
-                        Stack(
-                          children: [
-                            Container(
-                              width: double.infinity,
-                              height: Get.height / 2,
-                              decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.circular(AppSize.borderRadius),
-                              ),
-                              foregroundDecoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.circular(AppSize.borderRadius),
-                                gradient: const LinearGradient(
-                                  colors: AppGradient.primaryGradient,
-                                  begin: Alignment.bottomCenter,
-                                  end: Alignment.topCenter,
+                        InkWell(
+                          onTap: () {
+                            var id = homeScreenController.posterInfo.value.id!;
+                            articleContentController.getArticleInfo(id);
+                            Get.toNamed(routeArticleContent);
+                          },
+                          child: Stack(
+                            children: [
+                              Container(
+                                width: double.infinity,
+                                height: Get.height / 2,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(
+                                      AppSize.borderRadius),
+                                ),
+                                foregroundDecoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(
+                                      AppSize.borderRadius),
+                                  gradient: const LinearGradient(
+                                    colors: AppGradient.primaryGradient,
+                                    begin: Alignment.bottomCenter,
+                                    end: Alignment.topCenter,
+                                  ),
+                                ),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(
+                                      AppSize.borderRadius),
+                                  child: CachedNetworkImage(
+                                    imageUrl: homeScreenController
+                                        .posterInfo.value.image!,
+                                    placeholder: (context, url) => myLoading(),
+                                    errorWidget: (context, url, error) =>
+                                        Assets.icons.imageNotSupported.image(),
+                                    imageBuilder: (context, imageProvider) {
+                                      return Image(
+                                        image: imageProvider,
+                                        fit: BoxFit.cover,
+                                      );
+                                    },
+                                  ),
                                 ),
                               ),
-                              child: ClipRRect(
-                                borderRadius:
-                                    BorderRadius.circular(AppSize.borderRadius),
-                                child: CachedNetworkImage(
-                                  imageUrl: homeScreenController
-                                      .posterInfo.value.image!,
-                                  placeholder: (context, url) => myLoading(),
-                                  errorWidget: (context, url, error) =>
-                                      Assets.icons.imageNotSupported.image(),
-                                  imageBuilder: (context, imageProvider) {
-                                    return Image(
-                                      image: imageProvider,
-                                      fit: BoxFit.cover,
-                                    );
-                                  },
+                              Positioned(
+                                bottom: 0,
+                                left: 0,
+                                right: 0,
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(15, 0, 15, 15),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        homeScreenController
+                                            .posterInfo.value.title!,
+                                        style: AppTextStyle.title(),
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                      const SizedBox(height: 15),
+                                      authorAndView(
+                                        author: "محمد حقیقی",
+                                        view: "25674",
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
-                            Positioned(
-                              bottom: 0,
-                              left: 0,
-                              right: 0,
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(15, 0, 15, 15),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      homeScreenController
-                                          .posterInfo.value.title!,
-                                      style: AppTextStyle.title(),
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                    const SizedBox(height: 15),
-                                    authorAndView(
-                                      author: "محمد حقیقی",
-                                      view: "25674",
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ],
                     ),
