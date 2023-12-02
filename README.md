@@ -1,5 +1,5 @@
 ![banner](assets/images/banner.jpg)
-# 💻️Techblog
+# 💻️ Techblog
     TechBlog App is an Android app that allows you to read a variety of articles on a variety of topics. This app includes articles on entertainment, news, games, movies, and other topics.
 Star⭐ the repo if you like what you.
 
