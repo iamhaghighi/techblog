@@ -162,7 +162,7 @@ class OnBoardScreen extends StatelessWidget {
                         fontSize: 18,
                       ),
                     ),
-                    SizedBox(height: AppSize.bodyHeight - 20),
+                    SizedBox(height: AppSize.defaultBodyHeight - 20),
                     Text(
                       onBoardScreenController
                           .onBoardModelList[index].description,

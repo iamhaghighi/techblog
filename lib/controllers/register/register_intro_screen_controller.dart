@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:techblog/components/apis.dart';
 import 'package:techblog/components/app_get_storage.dart';
-import 'package:techblog/components/components.dart';
+import 'package:techblog/components/colors.dart';
+import 'package:techblog/components/size.dart';
+import 'package:techblog/components/text_style.dart';
+import 'package:techblog/gen/assets.gen.dart';
 import 'package:techblog/main.dart';
 import 'package:techblog/services/dio_services.dart';
 
@@ -62,4 +66,95 @@ class RegisterIntroScreenController extends GetxController {
       Get.toNamed(routeRegisterIntroScreen);
     }
   }
+}
+
+Future<dynamic> articleManagerBottomSheet() {
+  return Get.bottomSheet(
+    Container(
+      height: Get.height / 3,
+      width: Get.width / 1,
+      decoration: const BoxDecoration(
+        color: AppColors.bg,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(AppSize.defaultBorderRadius + 5),
+          topRight: Radius.circular(AppSize.defaultBorderRadius + 5),
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(15, 10, 15, 0),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Assets.icons.bot.image(
+                  scale: 20,
+                ),
+                const SizedBox(width: AppSize.defaultBetweenWidth),
+                Text(
+                  "دونسته هات رو به اشتراک بزار",
+                  style: AppTextStyle.heading1(
+                    color: AppColors.defaultColorBlack,
+                  ),
+                ),
+              ],
+            ),
+            Text(
+              "فکر کن !!  اینجا بودنت به این معناست که یک گیک تکنولوژی هستیدونسته هات رو با  جامعه‌ی گیک های فارسی زبان به اشتراک بذار..",
+              style: AppTextStyle.heading2(
+                color: AppColors.defaultColorBlack,
+              ),
+              textAlign: TextAlign.justify,
+            ),
+            SizedBox(
+              height: AppSize.defaultBodyHeight,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                InkWell(
+                  onTap: () {
+                    Get.toNamed(routeArticleManager);
+                  },
+                  child: SizedBox(
+                    height: 50,
+                    child: Row(
+                      children: [
+                        SvgPicture.asset(
+                          Assets.icons.documentManage.path,
+                        ),
+                        const SizedBox(
+                          height: 30,
+                          child: Text("مدیریت مقاله"),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {},
+                  child: SizedBox(
+                    height: 50,
+                    child: Row(
+                      children: [
+                        SvgPicture.asset(
+                          Assets.icons.voiceManage.path,
+                          width: 30,
+                        ),
+                        const SizedBox(
+                          height: 30,
+                          child: Text(
+                            "مدیریت پادکست",
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
 }

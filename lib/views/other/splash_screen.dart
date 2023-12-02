@@ -25,7 +25,7 @@ class SplashScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Assets.images.logo.image(scale: 4),
-              SizedBox(height: AppSize.bodyHeight - 10),
+              SizedBox(height: AppSize.defaultBodyHeight - 10),
               const SpinKitFadingCube(
                 color: AppColors.primaryColor,
                 size: 13,

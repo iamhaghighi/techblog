@@ -71,7 +71,7 @@ class ArticleContent extends StatelessWidget {
                         )
                       ],
                     ),
-                    SizedBox(height: AppSize.bodyHeight - 15),
+                    SizedBox(height: AppSize.defaultBodyHeight - 15),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(
                         AppSize.bodyPaddingLeft - 5,
@@ -87,7 +87,7 @@ class ArticleContent extends StatelessWidget {
                             style: AppTextStyle.title(
                                 color: AppColors.defaultColorBlack),
                           ),
-                          SizedBox(height: AppSize.bodyHeight - 20),
+                          SizedBox(height: AppSize.defaultBodyHeight - 20),
                           Row(
                             children: [
                               SvgPicture.asset(
@@ -95,7 +95,7 @@ class ArticleContent extends StatelessWidget {
                                 height: 15,
                               ),
                               const SizedBox(
-                                width: AppSize.betweenWidgetWidth,
+                                width: AppSize.defaultBetweenWidth,
                               ),
                               Text(
                                 "${articleContentController.articleInfo.value.author!} - ${articleContentController.articleInfo.value.createdAt!}",
@@ -105,7 +105,7 @@ class ArticleContent extends StatelessWidget {
                               )
                             ],
                           ),
-                          SizedBox(height: AppSize.bodyHeight - 20),
+                          SizedBox(height: AppSize.defaultBodyHeight - 20),
                           HtmlWidget(
                             """<p style="text-align: justify;">${articleContentController.articleInfo.value.content!}</p>""",
                             textStyle: AppTextStyle.heading2(
@@ -118,24 +118,24 @@ class ArticleContent extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(height: AppSize.bodyHeight),
+                    SizedBox(height: AppSize.defaultBodyHeight),
                     tags(
                       modeList: articleContentController.tagsList,
                       listViewSizedBoxHeight: 60,
                       isPadding: true,
                       rightPadding: AppSize.bodyPaddingRight - 5,
                       leftPadding: AppSize.bodyPaddingLeft - 5,
-                      betweenWidgetWidth: AppSize.betweenWidgetWidth,
+                      betweenWidgetWidth: AppSize.defaultBetweenWidth,
                     ),
-                    SizedBox(height: AppSize.bodyHeight),
+                    SizedBox(height: AppSize.defaultBodyHeight),
                     viewContentBox(
                       modelList: articleContentController.relatedList,
                       isPadding: true,
                       rightPadding: AppSize.bodyPaddingRight - 5,
                       leftPadding: AppSize.bodyPaddingLeft - 5,
-                      betweenWidgetWidth: AppSize.betweenWidgetWidth,
+                      betweenWidgetWidth: AppSize.defaultBetweenWidth,
                     ),
-                    SizedBox(height: AppSize.bodyHeight),
+                    SizedBox(height: AppSize.defaultBodyHeight),
                   ],
                 ),
               ),

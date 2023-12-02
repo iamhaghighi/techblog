@@ -27,7 +27,7 @@ class RegisterIntro extends StatelessWidget {
                 color: AppColors.defaultColorBlack,
               ),
             ),
-            const SizedBox(height: AppSize.betweenWidgetWidth),
+            const SizedBox(height: AppSize.defaultBetweenWidth),
             SizedBox(
               width: 250,
               child: Text(
@@ -39,7 +39,7 @@ class RegisterIntro extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: AppSize.bodyHeight + 50,
+              height: AppSize.defaultBodyHeight + 50,
             ),
             ElevatedButton(
               onPressed: () {
@@ -64,8 +64,8 @@ class RegisterIntro extends StatelessWidget {
         decoration: const BoxDecoration(
           color: AppColors.bg,
           borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(AppSize.borderRadius + 5),
-            topRight: Radius.circular(AppSize.borderRadius + 5),
+            topLeft: Radius.circular(AppSize.defaultBorderRadius + 5),
+            topRight: Radius.circular(AppSize.defaultBorderRadius + 5),
           ),
         ),
         child: Column(
@@ -77,7 +77,7 @@ class RegisterIntro extends StatelessWidget {
                 color: AppColors.defaultColorBlack,
               ),
             ),
-            const SizedBox(height: AppSize.betweenWidgetWidth + 5),
+            const SizedBox(height: AppSize.defaultBetweenWidth + 5),
             SizedBox(
               width: Get.width / 1.3,
               height: Get.height / 19,
@@ -109,7 +109,7 @@ class RegisterIntro extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: AppSize.bodyHeight,
+              height: AppSize.defaultBodyHeight,
             ),
             ElevatedButton(
               onPressed: () {
@@ -136,8 +136,8 @@ class RegisterIntro extends StatelessWidget {
         decoration: const BoxDecoration(
           color: AppColors.bg,
           borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(AppSize.borderRadius + 5),
-            topRight: Radius.circular(AppSize.borderRadius + 5),
+            topLeft: Radius.circular(AppSize.defaultBorderRadius + 5),
+            topRight: Radius.circular(AppSize.defaultBorderRadius + 5),
           ),
         ),
         child: Column(
@@ -149,7 +149,7 @@ class RegisterIntro extends StatelessWidget {
                 color: AppColors.defaultColorBlack,
               ),
             ),
-            const SizedBox(height: AppSize.betweenWidgetWidth + 5),
+            const SizedBox(height: AppSize.defaultBetweenWidth + 5),
             SizedBox(
               width: Get.width / 1.3,
               height: Get.height / 19,
@@ -177,7 +177,7 @@ class RegisterIntro extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: AppSize.bodyHeight,
+              height: AppSize.defaultBodyHeight,
             ),
             ElevatedButton(
               onPressed: () {

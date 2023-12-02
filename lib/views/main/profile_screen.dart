@@ -41,7 +41,7 @@ class ProfileScreen extends StatelessWidget {
                   Get.back();
                 },
               ),
-              SizedBox(height: AppSize.bodyHeight),
+              SizedBox(height: AppSize.defaultBodyHeight),
               // profile
               Stack(
                 children: [
@@ -117,7 +117,7 @@ class ProfileScreen extends StatelessWidget {
                   )
                 ],
               ),
-              SizedBox(height: AppSize.bodyHeight - 20),
+              SizedBox(height: AppSize.defaultBodyHeight - 20),
               // profile name and email
               Column(
                 children: [
@@ -135,13 +135,13 @@ class ProfileScreen extends StatelessWidget {
                   )
                 ],
               ),
-              SizedBox(height: AppSize.bodyHeight - 10),
+              SizedBox(height: AppSize.defaultBodyHeight - 10),
               // Setting Container
               Container(
                 decoration: BoxDecoration(
                   color: AppColors.defaultColorWhite,
                   borderRadius: BorderRadius.circular(
-                    AppSize.borderRadius,
+                    AppSize.defaultBorderRadius,
                   ),
                   boxShadow: const [
                     BoxShadow(
@@ -162,7 +162,8 @@ class ProfileScreen extends StatelessWidget {
                           Row(
                             children: [
                               SvgPicture.asset(Assets.icons.edit2.path),
-                              const SizedBox(width: AppSize.betweenWidgetWidth),
+                              const SizedBox(
+                                  width: AppSize.defaultBetweenWidth),
                               Text(
                                 "ویرایش پروفایل",
                                 style: AppTextStyle.heading2(
@@ -189,7 +190,8 @@ class ProfileScreen extends StatelessWidget {
                           Row(
                             children: [
                               SvgPicture.asset(Assets.icons.password.path),
-                              const SizedBox(width: AppSize.betweenWidgetWidth),
+                              const SizedBox(
+                                  width: AppSize.defaultBetweenWidth),
                               Text(
                                 "تغییر دادن رمز عبور",
                                 style: AppTextStyle.heading2(
@@ -216,7 +218,8 @@ class ProfileScreen extends StatelessWidget {
                           Row(
                             children: [
                               SvgPicture.asset(Assets.icons.setting.path),
-                              const SizedBox(width: AppSize.betweenWidgetWidth),
+                              const SizedBox(
+                                  width: AppSize.defaultBetweenWidth),
                               Text(
                                 "تنظیمات",
                                 style: AppTextStyle.heading2(
@@ -246,7 +249,8 @@ class ProfileScreen extends StatelessWidget {
                                 Assets.icons.logout.path,
                                 color: AppColors.warningColor,
                               ),
-                              const SizedBox(width: AppSize.betweenWidgetWidth),
+                              const SizedBox(
+                                  width: AppSize.defaultBetweenWidth),
                               Text(
                                 "خروج از حساب کاربری",
                                 style: AppTextStyle.heading2(

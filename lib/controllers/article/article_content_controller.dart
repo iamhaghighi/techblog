@@ -1,18 +1,14 @@
 import 'package:get/get.dart';
 import 'package:techblog/components/apis.dart';
 import '../../models/article_content_model.dart';
-import '../../models/articler_model.dart';
+import '../../models/article_model.dart';
 import '../../models/tags_model.dart';
 import '../../services/dio_services.dart';
 
 class ArticleContentController extends GetxController {
   Rx<ArticleContentModel> articleInfo = ArticleContentModel(
-    title: null,
-    catId: null,
-    catName: null,
-    content: null,
-    image: null
-  ).obs;
+          title: null, catId: null, catName: null, content: null, image: null)
+      .obs;
   RxList<TagsModel> tagsList = RxList();
   RxList<ArticleModel> relatedList = RxList();
   RxBool loading = true.obs;

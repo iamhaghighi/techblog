@@ -46,7 +46,7 @@ class ArticleScreen extends StatelessWidget {
                           Get.back();
                         },
                       ),
-                      SizedBox(height: AppSize.bodyHeight - 10),
+                      SizedBox(height: AppSize.defaultBodyHeight - 10),
                       SizedBox(
                         height: Get.height / 1.131,
                         child: ListView.builder(
@@ -66,12 +66,12 @@ class ArticleScreen extends StatelessWidget {
                                     height: 150,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(
-                                        AppSize.borderRadius,
+                                        AppSize.defaultBorderRadius,
                                       ),
                                     ),
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(
-                                        AppSize.borderRadius,
+                                        AppSize.defaultBorderRadius,
                                       ),
                                       child: CachedNetworkImage(
                                         imageUrl: articleScreenController
@@ -118,7 +118,7 @@ class ArticleScreen extends StatelessWidget {
                                     authorAndViewColor:
                                         AppColors.defaultColorBlack,
                                   ),
-                                  SizedBox(height: AppSize.bodyHeight),
+                                  SizedBox(height: AppSize.defaultBodyHeight),
                                 ],
                               ),
                             );

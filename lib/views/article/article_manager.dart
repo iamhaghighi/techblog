@@ -74,12 +74,12 @@ class ArticleManagerScreen extends StatelessWidget {
                           width: 100,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(
-                              AppSize.borderRadius,
+                              AppSize.defaultBorderRadius,
                             ),
                           ),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(
-                              AppSize.borderRadius,
+                              AppSize.defaultBorderRadius,
                             ),
                             child: CachedNetworkImage(
                               imageUrl: articleManagerScreenController
@@ -101,7 +101,7 @@ class ArticleManagerScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        const SizedBox(width: AppSize.betweenWidgetWidth),
+                        const SizedBox(width: AppSize.defaultBetweenWidth),
                         SizedBox(
                           width: Get.width / 2,
                           height: 100,
@@ -119,7 +119,7 @@ class ArticleManagerScreen extends StatelessWidget {
                                 overflow: TextOverflow.ellipsis,
                               ),
                               const SizedBox(
-                                  height: AppSize.betweenWidgetWidth),
+                                  height: AppSize.defaultBetweenWidth),
                               authorAndView(
                                 author: articleManagerScreenController
                                         .articleList[index].author ??
@@ -134,7 +134,7 @@ class ArticleManagerScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const SizedBox(height: AppSize.betweenWidgetWidth),
+                    const SizedBox(height: AppSize.defaultBetweenWidth),
                   ],
                 );
               },

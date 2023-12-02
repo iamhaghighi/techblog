@@ -41,7 +41,7 @@ Widget getWidgetRight({
             color: rightIconColor,
             size: rightIconSize,
           ),
-          const SizedBox(width: AppSize.betweenWidgetWidth),
+          const SizedBox(width: AppSize.defaultBetweenWidth),
           SvgPicture.asset(
             rightLeftSvgIcon,
             color: rightLeftSvgIconColor,
@@ -166,7 +166,7 @@ Widget iconWithTitle({
         svgIcon,
         color: svgIconAndTitleColor,
       ),
-      const SizedBox(width: AppSize.betweenWidgetWidth),
+      const SizedBox(width: AppSize.defaultBetweenWidth),
       Text(
         title,
         style: AppTextStyle.heading1(color: svgIconAndTitleColor),
@@ -224,7 +224,7 @@ Widget tags({
                   decoration: BoxDecoration(
                     color: hashtagContainerColor,
                     borderRadius: BorderRadius.circular(
-                      AppSize.borderRadius,
+                      AppSize.defaultBorderRadius,
                     ),
                   ),
                   child: Padding(
@@ -236,7 +236,7 @@ Widget tags({
                           color: iconColor,
                         ),
                         const SizedBox(
-                          width: AppSize.betweenWidgetWidth,
+                          width: AppSize.defaultBetweenWidth,
                         ),
                         Text(
                           modeList[index].title,
@@ -306,12 +306,12 @@ Widget viewContentBox({
                           width: Get.width / 2.2,
                           height: Get.height / 4.5,
                           decoration: BoxDecoration(
-                            borderRadius:
-                                BorderRadius.circular(AppSize.borderRadius),
+                            borderRadius: BorderRadius.circular(
+                                AppSize.defaultBorderRadius),
                           ),
                           foregroundDecoration: BoxDecoration(
-                            borderRadius:
-                                BorderRadius.circular(AppSize.borderRadius),
+                            borderRadius: BorderRadius.circular(
+                                AppSize.defaultBorderRadius),
                             gradient: const LinearGradient(
                               colors: AppGradient.contentGradient,
                               begin: Alignment.bottomCenter,
@@ -319,8 +319,8 @@ Widget viewContentBox({
                             ),
                           ),
                           child: ClipRRect(
-                            borderRadius:
-                                BorderRadius.circular(AppSize.borderRadius),
+                            borderRadius: BorderRadius.circular(
+                                AppSize.defaultBorderRadius),
                             child: CachedNetworkImage(
                               imageUrl: isDifferentVariable
                                   ? modelList[index].poster
@@ -372,97 +372,6 @@ Widget viewContentBox({
           ),
         );
       },
-    ),
-  );
-}
-
-Future<dynamic> articleManagerBottomSheet() {
-  return Get.bottomSheet(
-    Container(
-      height: Get.height / 3,
-      width: Get.width / 1,
-      decoration: const BoxDecoration(
-        color: AppColors.bg,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(AppSize.borderRadius + 5),
-          topRight: Radius.circular(AppSize.borderRadius + 5),
-        ),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(15, 10, 15, 0),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Assets.icons.bot.image(
-                  scale: 20,
-                ),
-                const SizedBox(width: AppSize.betweenWidgetWidth),
-                Text(
-                  "دونسته هات رو به اشتراک بزار",
-                  style: AppTextStyle.heading1(
-                    color: AppColors.defaultColorBlack,
-                  ),
-                ),
-              ],
-            ),
-            Text(
-              "فکر کن !!  اینجا بودنت به این معناست که یک گیک تکنولوژی هستیدونسته هات رو با  جامعه‌ی گیک های فارسی زبان به اشتراک بذار..",
-              style: AppTextStyle.heading2(
-                color: AppColors.defaultColorBlack,
-              ),
-              textAlign: TextAlign.justify,
-            ),
-            SizedBox(
-              height: AppSize.bodyHeight,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                InkWell(
-                  onTap: () {
-                    Get.toNamed(routeArticleManager);
-                  },
-                  child: SizedBox(
-                    height: 50,
-                    child: Row(
-                      children: [
-                        SvgPicture.asset(
-                          Assets.icons.documentManage.path,
-                        ),
-                        const SizedBox(
-                          height: 30,
-                          child: Text("مدیریت مقاله"),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                InkWell(
-                  onTap: () {},
-                  child: SizedBox(
-                    height: 50,
-                    child: Row(
-                      children: [
-                        SvgPicture.asset(
-                          Assets.icons.voiceManage.path,
-                          width: 30,
-                        ),
-                        const SizedBox(
-                          height: 30,
-                          child: Text(
-                            "مدیریت پادکست",
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
     ),
   );
 }

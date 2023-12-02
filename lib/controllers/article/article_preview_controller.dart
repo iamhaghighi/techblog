@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:techblog/components/apis.dart';
 import 'package:techblog/components/app_get_storage.dart';
 import 'package:techblog/controllers/other/file_picker_controller.dart';
 import 'package:techblog/main.dart';
@@ -38,7 +39,7 @@ class ArticlePreviewController extends GetxController {
     };
     var response = await DioService().postMethod(
       map,
-      "https://techblog.sasansafari.com/Techblog/api/article/post.php",
+      AppApis.postArticle,
     );
     log(response.toString());
     if (response.data['success'] == true) {

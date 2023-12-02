@@ -21,11 +21,11 @@ class RegCat extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             gridViewBuilder(),
-            SizedBox(height: AppSize.bodyHeight),
+            SizedBox(height: AppSize.defaultBodyHeight),
             Assets.icons.line.image(scale: 3),
-            SizedBox(height: AppSize.bodyHeight),
+            SizedBox(height: AppSize.defaultBodyHeight),
             gridViewBuilder(),
-            SizedBox(height: AppSize.bodyHeight),
+            SizedBox(height: AppSize.defaultBodyHeight),
             ElevatedButton(
               onPressed: () {},
               child: Text(
@@ -59,7 +59,7 @@ class RegCat extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: AppColors.quinaryColor,
                     borderRadius: BorderRadius.circular(
-                      AppSize.borderRadius,
+                      AppSize.defaultBorderRadius,
                     ),
                   ),
                   child: Padding(
@@ -70,7 +70,6 @@ class RegCat extends StatelessWidget {
                         Text(
                           homeScreenController.tagsList[index].title!,
                           style: AppTextStyle.heading2(fontSize: 12),
-
                         ),
                       ],
                     ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:techblog/components/apis.dart';
-import 'package:techblog/models/articler_model.dart';
+import 'package:techblog/models/article_model.dart';
 import 'package:techblog/models/podcast_model.dart';
 import 'package:techblog/models/poster_model.dart';
 import 'package:techblog/models/tags_model.dart';

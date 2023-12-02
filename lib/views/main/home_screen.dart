@@ -59,7 +59,7 @@ class HomeScreen extends StatelessWidget {
                                 .openDrawer();
                           },
                         ),
-                        SizedBox(height: AppSize.bodyHeight),
+                        SizedBox(height: AppSize.defaultBodyHeight),
                         // cover
                         InkWell(
                           onTap: () {
@@ -74,11 +74,11 @@ class HomeScreen extends StatelessWidget {
                                 height: Get.height / 2,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(
-                                      AppSize.borderRadius),
+                                      AppSize.defaultBorderRadius),
                                 ),
                                 foregroundDecoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(
-                                      AppSize.borderRadius),
+                                      AppSize.defaultBorderRadius),
                                   gradient: const LinearGradient(
                                     colors: AppGradient.primaryGradient,
                                     begin: Alignment.bottomCenter,
@@ -87,7 +87,7 @@ class HomeScreen extends StatelessWidget {
                                 ),
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(
-                                      AppSize.borderRadius),
+                                      AppSize.defaultBorderRadius),
                                   child: CachedNetworkImage(
                                     imageUrl: homeScreenController
                                         .posterInfo.value.image!,
@@ -137,14 +137,14 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                   // TAGS
-                  SizedBox(height: AppSize.bodyHeight),
+                  SizedBox(height: AppSize.defaultBodyHeight),
                   tags(
                     modeList: homeScreenController.tagsList,
                     listViewSizedBoxHeight: 60,
                     isPadding: true,
                     leftPadding: AppSize.bodyPaddingLeft,
                     rightPadding: AppSize.bodyPaddingRight,
-                    betweenWidgetWidth: AppSize.betweenWidgetWidth,
+                    betweenWidgetWidth: AppSize.defaultBetweenWidth,
                   ),
                   // blog
                   InkWell(
@@ -164,15 +164,15 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: AppSize.bodyHeight - 20),
+                  SizedBox(height: AppSize.defaultBodyHeight - 20),
                   viewContentBox(
                     modelList: homeScreenController.articleTopVisitedList,
                     isPadding: true,
                     rightPadding: AppSize.bodyPaddingRight,
                     leftPadding: AppSize.bodyPaddingLeft,
-                    betweenWidgetWidth: AppSize.betweenWidgetWidth,
+                    betweenWidgetWidth: AppSize.defaultBetweenWidth,
                   ),
-                  SizedBox(height: AppSize.bodyHeight),
+                  SizedBox(height: AppSize.defaultBodyHeight),
                   // podcast
                   InkWell(
                     onTap: () {},
@@ -187,17 +187,17 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: AppSize.bodyHeight - 20),
+                  SizedBox(height: AppSize.defaultBodyHeight - 20),
                   viewContentBox(
                     modelList: homeScreenController.articleTopPodcastList,
                     isPadding: true,
                     rightPadding: AppSize.bodyPaddingRight,
                     leftPadding: AppSize.bodyPaddingLeft,
-                    betweenWidgetWidth: AppSize.betweenWidgetWidth,
+                    betweenWidgetWidth: AppSize.defaultBetweenWidth,
                     isDifferentVariable: true,
                   ),
                   // height for bottomNav
-                  SizedBox(height: AppSize.bodyHeight + 50),
+                  SizedBox(height: AppSize.defaultBodyHeight + 50),
                 ],
               ),
             ),

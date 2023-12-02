@@ -1,5 +1,3 @@
-// TODO: tooye appBar icon ro ye negahi bendaz. age shod bezaresh Widget
-// TODO: tooye appBar be jaye textColor bezar TextStyle ta user khodesh entekhab kone
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';

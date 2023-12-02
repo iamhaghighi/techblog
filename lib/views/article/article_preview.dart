@@ -69,8 +69,10 @@ class ArticlePreview extends StatelessWidget {
                         decoration: const BoxDecoration(
                           color: AppColors.primaryColor,
                           borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(AppSize.borderRadius),
-                            topRight: Radius.circular(AppSize.borderRadius),
+                            topLeft:
+                                Radius.circular(AppSize.defaultBorderRadius),
+                            topRight:
+                                Radius.circular(AppSize.defaultBorderRadius),
                           ),
                         ),
                         child: Row(
@@ -123,16 +125,16 @@ class ArticlePreview extends StatelessWidget {
                       title: "ویرایش عنوان مقاله",
                     ),
                   ),
-                  const SizedBox(height: AppSize.betweenWidgetWidth),
+                  const SizedBox(height: AppSize.defaultBetweenWidth),
                   Text(
                     articlePreviewController.articleListInfo.value.title!,
                     style: AppTextStyle.heading2(
                       color: AppColors.defaultColorBlack,
                     ),
                   ),
-                  const SizedBox(height: AppSize.betweenWidgetWidth),
+                  SizedBox(height: AppSize.defaultBodyHeight),
                   articlePreviewTitle(title: "ویرایش متن اصلی مقاله"),
-                  const SizedBox(height: AppSize.betweenWidgetWidth),
+                  const SizedBox(height: AppSize.defaultBetweenWidth),
                   SingleChildScrollView(
                     child: Text(
                       articlePreviewController.articleListInfo.value.content!,
@@ -141,21 +143,21 @@ class ArticlePreview extends StatelessWidget {
                       textAlign: TextAlign.justify,
                     ),
                   ),
-                  const SizedBox(height: AppSize.betweenWidgetWidth),
+                  SizedBox(height: AppSize.defaultBodyHeight),
                   InkWell(
                     onTap: () {
                       articlePreviewTagsBottomSheet();
                     },
                     child: articlePreviewTitle(title: "انتخاب دسته بندی"),
                   ),
-                  const SizedBox(height: AppSize.betweenWidgetWidth),
+                  const SizedBox(height: AppSize.defaultBetweenWidth),
                   InkWell(
                     onTap: () {},
                     child: Container(
                       decoration: BoxDecoration(
                         color: AppColors.quinaryColor,
                         borderRadius: BorderRadius.circular(
-                          AppSize.borderRadius,
+                          AppSize.defaultBorderRadius,
                         ),
                       ),
                       child: Padding(
@@ -167,10 +169,10 @@ class ArticlePreview extends StatelessWidget {
                               width: 13,
                               color: AppColors.defaultColorWhite,
                             ),
-                            const SizedBox(width: AppSize.betweenWidgetWidth),
+                            const SizedBox(width: AppSize.defaultBetweenWidth),
                             Text(
                               articlePreviewController
-                                      .articleListInfo.value.catName!,
+                                  .articleListInfo.value.catName!,
                               style: AppTextStyle.heading2(),
                             ),
                           ],
@@ -191,7 +193,7 @@ class ArticlePreview extends StatelessWidget {
                 style: AppTextStyle.heading1(),
               ),
             ),
-            SizedBox(height: AppSize.bodyHeight),
+            SizedBox(height: AppSize.defaultBodyHeight),
           ],
         ),
       ),
@@ -287,7 +289,7 @@ class ArticlePreview extends StatelessWidget {
           height: 20,
           color: AppColors.secondaryColor,
         ),
-        const SizedBox(width: AppSize.betweenWidgetWidth),
+        const SizedBox(width: AppSize.defaultBetweenWidth),
         Text(
           title,
           style: AppTextStyle.heading1(

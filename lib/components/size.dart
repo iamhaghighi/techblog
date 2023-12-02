@@ -8,9 +8,9 @@ class AppSize {
   static const double bodyPaddingRight = 20;
 
   // SIZED BOX
-  static double bodyHeight = Get.height / 20;
-  static const double betweenWidgetWidth = 10;
+  static double defaultBodyHeight = Get.height / 20;
+  static const double defaultBetweenWidth = 10;
 
   // Border Radius
-  static const double borderRadius = 7;
+  static const double defaultBorderRadius = 7;
 }

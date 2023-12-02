@@ -1,7 +1,8 @@
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:techblog/components/apis.dart';
 import 'package:techblog/components/app_get_storage.dart';
-import 'package:techblog/models/articler_model.dart';
+import 'package:techblog/models/article_model.dart';
 import 'package:techblog/services/dio_services.dart';
 
 class ArticleManagerController extends GetxController {
@@ -18,7 +19,7 @@ class ArticleManagerController extends GetxController {
     loading.value = true;
     var userId = GetStorage().read(AppStorage.userId);
     var response = await DioService().getMethod(
-      "https://techblog.sasansafari.com/Techblog/api/article/get.php?command=published_by_me&user_id=$userId",
+      AppApis.publishedByMe + userId,
     );
     articleList.clear();
     if (response.statusCode == 200) {
