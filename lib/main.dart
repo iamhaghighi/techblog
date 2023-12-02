@@ -29,11 +29,15 @@ class MainApp extends StatelessWidget {
         fontFamily: 'dana',
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
-              backgroundColor: const MaterialStatePropertyAll(
-                AppColors.primaryColor,
+            backgroundColor: const MaterialStatePropertyAll(
+              AppColors.primaryColor,
+            ),
+            shape: MaterialStatePropertyAll(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(5),
               ),
-              shape: MaterialStatePropertyAll(RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5)))),
+            ),
+          ),
         ),
       ),
       debugShowCheckedModeBanner: false,

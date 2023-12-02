@@ -10,6 +10,7 @@ import 'package:techblog/components/text_style.dart';
 import 'package:techblog/gen/assets.gen.dart';
 import 'package:techblog/main.dart';
 import 'package:techblog/services/dio_services.dart';
+import 'package:techblog/controllers/article/article_manager_controller.dart';
 
 class RegisterIntroScreenController extends GetxController {
   TextEditingController registerEmailTextEditingController =
@@ -69,6 +70,9 @@ class RegisterIntroScreenController extends GetxController {
 }
 
 Future<dynamic> articleManagerBottomSheet() {
+  ArticleManagerController articleManagerController = Get.put(
+    ArticleManagerController(),
+  );
   return Get.bottomSheet(
     Container(
       height: Get.height / 3,
@@ -114,6 +118,7 @@ Future<dynamic> articleManagerBottomSheet() {
                 InkWell(
                   onTap: () {
                     Get.toNamed(routeArticleManager);
+                    articleManagerController.getPublishedByMe();
                   },
                   child: SizedBox(
                     height: 50,

@@ -257,7 +257,7 @@ Widget tags({
 
 Widget viewContentBox({
   required List modelList,
-  double listViewHeightSize = 200,
+  double listViewHeightSize = 244,
   ScrollPhysics scrollPhysics = const BouncingScrollPhysics(),
   Axis scrollDirection = Axis.horizontal,
   bool isPadding = false,
