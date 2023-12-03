@@ -1,4 +1,4 @@
-![banner](assets/images/banner.jpg)
+![banner](assets/images/techblog_banner.jpg)
 # 💻 ️Techblog
 Star⭐ the repo if you like what you.
 
