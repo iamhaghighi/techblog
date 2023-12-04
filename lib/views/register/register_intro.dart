@@ -9,8 +9,8 @@ import 'package:techblog/gen/assets.gen.dart';
 class RegisterIntro extends StatelessWidget {
   RegisterIntro({super.key});
 
-  final RegisterIntroScreenController registerManagerController = Get.put(
-    RegisterIntroScreenController(),
+  final RegisterIntroController registerManagerController = Get.put(
+    RegisterIntroController(),
   );
 
   @override

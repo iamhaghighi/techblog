@@ -17,7 +17,6 @@ class MainScreen extends StatelessWidget {
     super.key,
   });
 
-  // change main screenController to Get.find when change to splashScreen in main.dart
   final MainScreenController mainScreenController = Get.put(
     MainScreenController(),
   );
@@ -139,8 +138,7 @@ class BottomNavigation extends StatelessWidget {
 
   final Rx<int Function(int)> changeScreenIndex;
   final mainScreenController = Get.find<MainScreenController>();
-  final registerIntroScreenController =
-      Get.put(RegisterIntroScreenController());
+  final registerIntroScreenController = Get.put(RegisterIntroController());
   @override
   Widget build(BuildContext context) {
     return Positioned(

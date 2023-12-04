@@ -12,7 +12,7 @@ import 'package:techblog/main.dart';
 import 'package:techblog/services/dio_services.dart';
 import 'package:techblog/controllers/article/article_manager_controller.dart';
 
-class RegisterIntroScreenController extends GetxController {
+class RegisterIntroController extends GetxController {
   TextEditingController registerEmailTextEditingController =
       TextEditingController();
   TextEditingController verifyCodeTextEditingController =

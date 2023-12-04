@@ -17,15 +17,9 @@ class HomeScreen extends StatelessWidget {
     super.key,
   });
 
-  final HomeScreenController homeScreenController = Get.put(
-    HomeScreenController(),
-  );
-  final ArticleScreenController articleScreenController = Get.put(
-    ArticleScreenController(),
-  );
-  final ArticleContentController articleContentController = Get.put(
-    ArticleContentController(),
-  );
+  final homeScreenController = Get.find<HomeScreenController>();
+  final articleScreenController = Get.put(ArticleScreenController());
+  final articleContentController = Get.put(ArticleContentController());
 
   @override
   Widget build(BuildContext context) {

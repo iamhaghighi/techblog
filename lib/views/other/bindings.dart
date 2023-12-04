@@ -12,56 +12,55 @@ import '../../controllers/article/article_content_controller.dart';
 class HomeScreenBinding implements Bindings {
   @override
   void dependencies() {
-    Get.put(HomeScreenController());
+    Get.lazyPut(() => HomeScreenController());
   }
 }
 
 class MainScreenBinding implements Bindings {
   @override
   void dependencies() {
-    Get.put(MainScreenController());
+    Get.lazyPut(() => MainScreenController());
   }
 }
 
 class ProfileScreenBinding implements Bindings {
   @override
   void dependencies() {
-    Get.put(ProfileScreenController());
+    Get.lazyPut(() => ProfileScreenController());
   }
 }
 
 class ArticleScreenBinding implements Bindings {
   @override
   void dependencies() {
-    Get.put(ArticleScreenController());
+    Get.lazyPut(() => ArticleScreenController());
   }
 }
 
 class ArticleContentBinding implements Bindings {
   @override
   void dependencies() {
-    Get.put((ArticleContentController));
-  }
-}
-
-class RegisterIntroScreenBindings implements Bindings {
-  @override
-  void dependencies() {
-    Get.put((RegisterIntroScreenController));
+    Get.lazyPut(() => (ArticleContentController));
   }
 }
 
 class ArticleManagerBindings implements Bindings {
   @override
   void dependencies() {
-    Get.put((ArticleManagerController));
+    Get.lazyPut(() => (ArticleManagerController));
   }
 }
 
 class ArticlePreviewBindings implements Bindings {
   @override
   void dependencies() {
-    Get.put((ArticlePreviewController));
+    Get.lazyPut(() => (ArticlePreviewController));
   }
 }
 
+class RegisterIntroBindings implements Bindings {
+  @override
+  void dependencies() {
+    Get.lazyPut(() => (RegisterIntroController));
+  }
+}
