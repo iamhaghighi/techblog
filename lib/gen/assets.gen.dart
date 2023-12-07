@@ -17,6 +17,18 @@ class $AssetsIconsGen {
   /// File path: assets/icons/Left1.svg
   SvgGenImage get left1 => const SvgGenImage('assets/icons/Left1.svg');
 
+  /// File path: assets/icons/Next.svg
+  SvgGenImage get next => const SvgGenImage('assets/icons/Next.svg');
+
+  /// File path: assets/icons/Play.svg
+  SvgGenImage get play => const SvgGenImage('assets/icons/Play.svg');
+
+  /// File path: assets/icons/Previous.svg
+  SvgGenImage get previous => const SvgGenImage('assets/icons/Previous.svg');
+
+  /// File path: assets/icons/Repeate.svg
+  SvgGenImage get repeate => const SvgGenImage('assets/icons/Repeate.svg');
+
   /// File path: assets/icons/Setting.svg
   SvgGenImage get setting => const SvgGenImage('assets/icons/Setting.svg');
 
@@ -122,6 +134,10 @@ class $AssetsIconsGen {
   /// List of all assets
   List<dynamic> get values => [
         left1,
+        next,
+        play,
+        previous,
+        repeate,
         setting,
         addPhotoPng,
         addPhotoSvg,
@@ -196,8 +212,15 @@ class $AssetsImagesGen {
   /// File path: assets/images/pod3.jpg
   AssetGenImage get pod3 => const AssetGenImage('assets/images/pod3.jpg');
 
+  /// File path: assets/images/present.jpg
+  AssetGenImage get present => const AssetGenImage('assets/images/present.jpg');
+
   /// File path: assets/images/profile.png
   AssetGenImage get profile => const AssetGenImage('assets/images/profile.png');
+
+  /// File path: assets/images/techblog_banner.jpg
+  AssetGenImage get techblogBanner =>
+      const AssetGenImage('assets/images/techblog_banner.jpg');
 
   /// List of all assets
   List<AssetGenImage> get values => [
@@ -212,7 +235,9 @@ class $AssetsImagesGen {
         pod1,
         pod2,
         pod3,
-        profile
+        present,
+        profile,
+        techblogBanner
       ];
 }
 

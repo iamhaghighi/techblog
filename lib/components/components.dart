@@ -257,6 +257,7 @@ Widget tags({
 
 Widget viewContentBox({
   required List modelList,
+  bool isDiffrentList = false,
   double listViewHeightSize = 244,
   ScrollPhysics scrollPhysics = const BouncingScrollPhysics(),
   Axis scrollDirection = Axis.horizontal,
@@ -264,7 +265,7 @@ Widget viewContentBox({
   double leftPadding = 0,
   double rightPadding = 0,
   double betweenWidgetWidth = 0,
-  bool isDifferentVariable = false,
+  bool isDiffrentImageVar = false,
 }) {
   return SizedBox(
     height: listViewHeightSize,
@@ -293,7 +294,12 @@ Widget viewContentBox({
             onTap: () {
               var id = modelList[index].id!;
               Get.find<ArticleContentController>().getArticleInfo(id);
-              Get.toNamed(routeArticleContent);
+              isDiffrentList
+                  ? Get.toNamed(
+                      routePodcastContent,
+                      arguments: modelList[index],
+                    )
+                  : Get.toNamed(routeArticleContent);
             },
             child: Column(
               children: [
@@ -322,7 +328,7 @@ Widget viewContentBox({
                             borderRadius: BorderRadius.circular(
                                 AppSize.defaultBorderRadius),
                             child: CachedNetworkImage(
-                              imageUrl: isDifferentVariable
+                              imageUrl: isDiffrentImageVar
                                   ? modelList[index].poster
                                   : modelList[index].image!,
                               placeholder: (context, url) => myLoading(),

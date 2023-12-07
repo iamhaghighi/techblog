@@ -114,7 +114,7 @@ class ArticleScreen extends StatelessWidget {
                                     author: articleScreenController
                                             .articleList[index].author ??
                                         "ناشناس",
-                                    view: "21456",
+                                    view: articleScreenController.articleList[index].view ?? "0",
                                     authorAndViewColor:
                                         AppColors.defaultColorBlack,
                                   ),

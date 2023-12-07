@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:techblog/components/colors.dart';
 
 class AppTextStyle {
+
+  AppTextStyle._();
+
   static TextStyle title({
     Color color = AppColors.defaultColorWhite,
     double fontSize = 14,

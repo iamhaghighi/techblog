@@ -44,12 +44,12 @@ class ArticleManagerScreen extends StatelessWidget {
             ? myLoading()
             : articleManagerScreenController.articleList.isEmpty
                 ? emptyState()
-                : fullState(),
+                : fullState(context),
       ),
     );
   }
 
-  Widget fullState() {
+  Widget fullState(BuildContext context) {
     return Stack(
       children: [
         Padding(
@@ -60,7 +60,7 @@ class ArticleManagerScreen extends StatelessWidget {
             AppSize.bodyPaddingTop,
           ),
           child: SizedBox(
-            height: Get.height / 1.131,
+            height: MediaQuery.of(context).size.height / 1.131,
             child: ListView.builder(
               itemCount: articleManagerScreenController.articleList.length,
               physics: const BouncingScrollPhysics(),
@@ -70,8 +70,8 @@ class ArticleManagerScreen extends StatelessWidget {
                     Row(
                       children: [
                         Container(
-                          height: 100,
-                          width: 100,
+                          height: Get.height / 6,
+                          width: Get.width / 3,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(
                               AppSize.defaultBorderRadius,
@@ -103,8 +103,8 @@ class ArticleManagerScreen extends StatelessWidget {
                         ),
                         const SizedBox(width: AppSize.defaultBetweenWidth),
                         SizedBox(
-                          width: Get.width / 2,
                           height: 100,
+                          width: Get.width / 2,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -119,7 +119,8 @@ class ArticleManagerScreen extends StatelessWidget {
                                 overflow: TextOverflow.ellipsis,
                               ),
                               const SizedBox(
-                                  height: AppSize.defaultBetweenWidth),
+                                height: AppSize.defaultBetweenWidth,
+                              ),
                               authorAndView(
                                 author: articleManagerScreenController
                                         .articleList[index].author ??

@@ -5,6 +5,7 @@ import 'package:techblog/components/colors.dart';
 import 'package:techblog/components/gestures.dart';
 import 'package:techblog/views/article/article_manager.dart';
 import 'package:techblog/views/article/article_preview.dart';
+import 'package:techblog/views/podcast/podcast_content.dart';
 import 'package:techblog/views/register/register_intro.dart';
 import 'package:techblog/views/article/article_screen.dart';
 import 'package:techblog/views/main/home_screen.dart';
@@ -13,7 +14,7 @@ import 'package:techblog/views/main/profile_screen.dart';
 import 'package:techblog/views/other/bindings.dart';
 import 'package:techblog/views/other/onboard_screen.dart';
 import 'views/article/article_content.dart';
-
+// TODO: background scaffol changt to bg
 void main() async {
   await GetStorage.init();
   runApp(const MainApp());
@@ -85,6 +86,11 @@ class MainApp extends StatelessWidget {
           curve: Curves.bounceIn,
         ),
         GetPage(
+          name: routePodcastContent,
+          page: () => PodcastContent(),
+          binding: PodcastContentBindings()
+        ),
+        GetPage(
           name: routeOnBoardScreen,
           page: () => OnBoardScreen(),
         ),
@@ -101,5 +107,6 @@ String routeArticleScreen = "/ArticleScreen";
 String routeArticleContent = "/ArticleContent";
 String routeArticleManager = "/ArticleManager";
 String routeArticlePreview = "/ArticlePreview";
-String routeOnBoardScreen = "/OnBoardScreen";
 String routeRegisterIntroScreen = "/RegisterIntroScreen";
+String routePodcastContent = "/PodcastContent";
+String routeOnBoardScreen = "/OnBoardScreen";

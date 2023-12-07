@@ -76,7 +76,7 @@ Future<dynamic> articleManagerBottomSheet() {
   return Get.bottomSheet(
     Container(
       height: Get.height / 3,
-      width: Get.width / 1,
+      width: Get.size.width / 1,
       decoration: const BoxDecoration(
         color: AppColors.bg,
         borderRadius: BorderRadius.only(

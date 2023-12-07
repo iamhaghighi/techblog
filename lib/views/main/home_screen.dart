@@ -65,7 +65,7 @@ class HomeScreen extends StatelessWidget {
                             children: [
                               Container(
                                 width: double.infinity,
-                                height: Get.height / 2,
+                                height: MediaQuery.of(context).size.height / 2,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(
                                       AppSize.defaultBorderRadius),
@@ -184,11 +184,12 @@ class HomeScreen extends StatelessWidget {
                   SizedBox(height: AppSize.defaultBodyHeight - 20),
                   viewContentBox(
                     modelList: homeScreenController.articleTopPodcastList,
+                    isDiffrentList: true,
                     isPadding: true,
                     rightPadding: AppSize.bodyPaddingRight,
                     leftPadding: AppSize.bodyPaddingLeft,
                     betweenWidgetWidth: AppSize.defaultBetweenWidth,
-                    isDifferentVariable: true,
+                    isDiffrentImageVar: true,
                   ),
                   // height for bottomNav
                   SizedBox(height: AppSize.defaultBodyHeight + 50),
