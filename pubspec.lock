@@ -41,6 +41,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.1.18"
+  audio_video_progress_bar:
+    dependency: "direct main"
+    description:
+      name: audio_video_progress_bar
+      sha256: "3384875247cdbea748bd9ae8330631cd06a6cabfcda4945d45c9b406da92bc66"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.1"
   boolean_selector:
     dependency: transitive
     description:
@@ -417,7 +425,7 @@ packages:
     source: hosted
     version: "4.8.1"
   just_audio:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: just_audio
       sha256: b607cd1a43bac03d85c3aaee00448ff4a589ef2a77104e3d409889ff079bf823
@@ -440,6 +448,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.4.9"
+  just_audio_windows:
+    dependency: "direct main"
+    description:
+      name: just_audio_windows
+      sha256: "7b8801f3987e98a2002cd23b5600b2daf162248ff1413266fb44c84448c1c0d3"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.0"
   leak_tracker:
     dependency: transitive
     description:
@@ -664,6 +680,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.27.7"
+  screen_retriever:
+    dependency: transitive
+    description:
+      name: screen_retriever
+      sha256: "6ee02c8a1158e6dae7ca430da79436e3b1c9563c8cf02f524af997c201ac2b90"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.9"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -997,6 +1021,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.1.0"
+  window_manager:
+    dependency: "direct main"
+    description:
+      name: window_manager
+      sha256: dcc865277f26a7dad263a47d0e405d77e21f12cb71f30333a52710a408690bd7
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.7"
   xdg_directories:
     dependency: transitive
     description:

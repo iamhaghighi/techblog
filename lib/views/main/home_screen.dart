@@ -159,7 +159,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: AppSize.defaultBodyHeight - 20),
-                  viewContentBox(
+                  contentViewBox(
                     modelList: homeScreenController.articleTopVisitedList,
                     isPadding: true,
                     rightPadding: AppSize.bodyPaddingRight,
@@ -182,7 +182,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: AppSize.defaultBodyHeight - 20),
-                  viewContentBox(
+                  contentViewBox(
                     modelList: homeScreenController.articleTopPodcastList,
                     isDiffrentList: true,
                     isPadding: true,

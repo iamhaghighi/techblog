@@ -7,8 +7,12 @@ import '../../services/dio_services.dart';
 
 class ArticleContentController extends GetxController {
   Rx<ArticleContentModel> articleInfo = ArticleContentModel(
-          title: null, catId: null, catName: null, content: null, image: null)
-      .obs;
+    title: null,
+    catId: null,
+    catName: null,
+    content: null,
+    image: null,
+  ).obs;
   RxList<TagsModel> tagsList = RxList();
   RxList<ArticleModel> relatedList = RxList();
   RxBool loading = true.obs;

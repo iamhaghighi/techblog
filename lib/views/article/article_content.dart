@@ -11,6 +11,8 @@ import 'package:techblog/gen/assets.gen.dart';
 
 import '../../controllers/article/article_content_controller.dart';
 
+// TODO: be yekei az ElemenHa MediaQueri Bede
+
 class ArticleContent extends StatelessWidget {
   ArticleContent({super.key});
 
@@ -33,7 +35,7 @@ class ArticleContent extends StatelessWidget {
                       Stack(
                         children: [
                           Container(
-                            height: Get.height / 3,
+                            height: MediaQuery.of(context).size.height / 3,
                             width: double.infinity,
                             foregroundDecoration: const BoxDecoration(
                               gradient: LinearGradient(
@@ -130,7 +132,7 @@ class ArticleContent extends StatelessWidget {
                         betweenWidgetWidth: AppSize.defaultBetweenWidth,
                       ),
                       SizedBox(height: AppSize.defaultBodyHeight),
-                      viewContentBox(
+                      contentViewBox(
                         modelList: articleContentController.relatedList,
                         isPadding: true,
                         rightPadding: AppSize.bodyPaddingRight - 5,

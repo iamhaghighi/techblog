@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:techblog/components/colors.dart';
 import 'package:techblog/components/size.dart';
 import 'package:techblog/components/text_style.dart';
-import 'package:techblog/controllers/article/article_content_controller.dart';
 import 'package:techblog/controllers/article/article_screen_controller.dart';
 import 'package:techblog/gen/assets.gen.dart';
 import 'package:flutter/cupertino.dart';
@@ -255,7 +254,7 @@ Widget tags({
   );
 }
 
-Widget viewContentBox({
+Widget contentViewBox({
   required List modelList,
   bool isDiffrentList = false,
   double listViewHeightSize = 244,
@@ -292,14 +291,25 @@ Widget viewContentBox({
           ),
           child: GestureDetector(
             onTap: () {
-              var id = modelList[index].id!;
-              Get.find<ArticleContentController>().getArticleInfo(id);
-              isDiffrentList
-                  ? Get.toNamed(
-                      routePodcastContent,
-                      arguments: modelList[index],
-                    )
-                  : Get.toNamed(routeArticleContent);
+              // var id = modelList[index].id!;
+              // Get.find<ArticleContentController>().getArticleInfo(id);
+              // isDiffrentList
+              //     ? Get.toNamed(
+              //         routePodcastContent,
+              //         arguments: modelList[index],
+              //       )
+              //     : Get.toNamed(routeArticleContent);
+              // ! --------------------------------------------
+              // podcastContentController.getPodcastsFile(id);
+              // Get.toNamed(
+              //   routePodcastContent,
+              //   arguments: modelList[index],
+              // );
+              // ! --------------------------------------------
+              Get.toNamed(
+                routePodcastContent,
+                arguments: modelList[index],
+              );
             },
             child: Column(
               children: [

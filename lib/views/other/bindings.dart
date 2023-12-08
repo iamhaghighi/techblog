@@ -5,7 +5,6 @@ import 'package:techblog/controllers/article/article_screen_controller.dart';
 import 'package:techblog/controllers/main/home_screen_controller.dart';
 import 'package:techblog/controllers/main/main_screen_controller.dart';
 import 'package:techblog/controllers/main/profile_screen_controller.dart';
-import 'package:techblog/controllers/podcast/podcast_content_controller.dart';
 import 'package:techblog/controllers/register/register_intro_screen_controller.dart';
 
 import '../../controllers/article/article_content_controller.dart';
@@ -63,13 +62,5 @@ class RegisterIntroBindings implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut(() => (RegisterIntroController));
-  }
-}
-
-
-class PodcastContentBindings implements Bindings {
-  @override
-  void dependencies() {
-    Get.lazyPut(() => (PodcastContentController()));
   }
 }
