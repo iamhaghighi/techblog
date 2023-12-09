@@ -20,6 +20,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/Next.svg
   SvgGenImage get next => const SvgGenImage('assets/icons/Next.svg');
 
+  /// File path: assets/icons/Pause.svg
+  SvgGenImage get pause => const SvgGenImage('assets/icons/Pause.svg');
+
   /// File path: assets/icons/Play.svg
   SvgGenImage get play => const SvgGenImage('assets/icons/Play.svg');
 
@@ -135,6 +138,7 @@ class $AssetsIconsGen {
   List<dynamic> get values => [
         left1,
         next,
+        pause,
         play,
         previous,
         repeate,

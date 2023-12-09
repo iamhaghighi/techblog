@@ -1,7 +1,9 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:techblog/components/colors.dart';
 import 'package:techblog/models/podcast_file_model.dart';
 
 import 'package:techblog/services/dio_services.dart';
@@ -16,8 +18,24 @@ class PodcastContentController extends GetxController {
   late ConcatenatingAudioSource playList;
   RxBool playState = false.obs;
   RxInt currentFileIndex = 0.obs;
+  RxBool isLoopModelAll = false.obs;
 
   // Timer? timer;
+
+  RxList<Color> colors = [
+    AppColors.secondaryColor,
+    AppColors.defaultColorBlack,
+    AppColors.defaultColorBlack,
+    AppColors.defaultColorBlack,
+  ].obs;
+  void changeStyle(int index) {
+    for (int i = 0; i < playList.length; i++) {
+      colors[i] =
+          (i == index) ? AppColors.secondaryColor : AppColors.defaultColorBlack;
+    }
+  }
+
+  Rx<Color> black = AppColors.defaultColorBlack.obs;
 
   @override
   onInit() async {
@@ -87,6 +105,8 @@ class PodcastContentController extends GetxController {
 
     timer = Timer.periodic(tick, (timer) {
       duration--;
+      debugPrint(
+          "duration: $duration ---> index: ${player.currentIndex}".toString());
       progressVal.value = player.position;
       bufferVal.value = player.bufferedPosition;
 
@@ -96,5 +116,25 @@ class PodcastContentController extends GetxController {
         bufferVal.value = const Duration(seconds: 0);
       }
     });
+  }
+
+  checkTimer() {
+    if (player.playing) {
+      startProgress();
+    } else {
+      // timer!.cancel();
+      // progressVal.value = const Duration(seconds: 0);
+      // bufferVal.value = const Duration(seconds: 0);
+    }
+  }
+
+  setLoopMode() {
+    if (isLoopModelAll.value) {
+      isLoopModelAll.value = false;
+      player.setLoopMode(LoopMode.off);
+    } else {
+      isLoopModelAll.value = true;
+      player.setLoopMode(LoopMode.all);
+    }
   }
 }

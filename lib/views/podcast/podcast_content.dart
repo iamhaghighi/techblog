@@ -29,11 +29,11 @@ class PodcastContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.bg,
-      body: Obx(
-        () => controller.loading.value
-            ? myLoading()
-            : SafeArea(
-                child: Stack(
+      body: SafeArea(
+        child: Obx(
+          () => controller.loading.value != false
+              ? myLoading()
+              : Stack(
                   children: [
                     Column(
                       children: [
@@ -58,22 +58,21 @@ class PodcastContent extends StatelessWidget {
                                     Assets.icons.imageNotSupported.image(),
                               ),
                             ),
-                            // Padding(
-                            //   padding: const EdgeInsets.fromLTRB(
-                            //     AppSize.bodyPaddingLeft - 5,
-                            //     AppSize.bodyPaddingTop - 10,
-                            //     AppSize.bodyPaddingRight - 5,
-                            //     0,
-                            //   ),
-                            //   child: appBar(
-                            //     leftSvgIcon: Assets.icons.left1.path,
-                            //     leftIconColor: AppColors.defaultColorWhite,
-                            //     rightIcon: Icons.share,
-                            //     rightIconColor: AppColors.defaultColorWhite,
-                            //     rightIconSize: 23,
-                            //     leftOnTap: () => Get.back(),
-                            //   ),
-                            // ),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(
+                                AppSize.bodyPaddingLeft - 5,
+                                AppSize.bodyPaddingTop - 10,
+                                AppSize.bodyPaddingRight - 5,
+                                0,
+                              ),
+                              child: appBar(
+                                leftSvgIcon: Assets.icons.left1.path,
+                                leftIconColor: AppColors.defaultColorWhite,
+                                rightSvgIcon: Assets.icons.share.path,
+                                rightIconColor: AppColors.defaultColorWhite,
+                                leftOnTap: () => Get.back(),
+                              ),
+                            ),
                           ],
                         ),
                         SizedBox(height: AppSize.defaultBodyHeight - 15),
@@ -117,23 +116,22 @@ class PodcastContent extends StatelessWidget {
                                 child: ListView.builder(
                                   itemCount: controller.podcastFileList.length,
                                   itemBuilder: (context, index) {
-                                    return Obx(
-                                      () => Padding(
-                                        padding: const EdgeInsets.only(
-                                          bottom:
-                                              AppSize.defaultBetweenWidth + 10,
-                                        ),
-                                        child: InkWell(
-                                          onTap: () {
-                                            controller.player.seek(
-                                              Duration.zero,
-                                              index: index,
-                                            );
-                                            controller.currentFileIndex.value =
-                                                controller.player.currentIndex!;
-                                            ;
-                                          },
-                                          child: Row(
+                                    return Padding(
+                                      padding: const EdgeInsets.only(
+                                        bottom:
+                                            AppSize.defaultBetweenWidth + 10,
+                                      ),
+                                      child: InkWell(
+                                        onTap: () async {
+                                          controller.player.seek(
+                                            Duration.zero,
+                                            index: index,
+                                          );
+                                          controller.changeStyle(index);
+                                          controller.checkTimer();
+                                        },
+                                        child: Obx(
+                                          () => Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
                                             crossAxisAlignment:
@@ -152,23 +150,15 @@ class PodcastContent extends StatelessWidget {
                                                   ),
                                                   SizedBox(
                                                     width: Get.size.width / 1.8,
-                                                    child: Obx(
-                                                      () => Text(
-                                                        controller
-                                                            .podcastFileList[
-                                                                index]
-                                                            .title!,
-                                                        style: AppTextStyle
-                                                            .subTitle(
-                                                          color: controller
-                                                                      .currentFileIndex
-                                                                      .value ==
-                                                                  index
-                                                              ? AppColors
-                                                                  .secondaryColor
-                                                              : AppColors
-                                                                  .defaultColorBlack,
-                                                        ),
+                                                    child: Text(
+                                                      controller
+                                                          .podcastFileList[
+                                                              index]
+                                                          .title!,
+                                                      style:
+                                                          AppTextStyle.subTitle(
+                                                        color: controller
+                                                            .colors[index],
                                                       ),
                                                     ),
                                                   ),
@@ -177,8 +167,8 @@ class PodcastContent extends StatelessWidget {
                                               Text(
                                                 "${controller.podcastFileList[index].length!}:00",
                                                 style: AppTextStyle.subTitle(
-                                                  color: AppColors
-                                                      .defaultColorBlack,
+                                                  color:
+                                                      controller.colors[index],
                                                 ),
                                               ),
                                             ],
@@ -199,7 +189,7 @@ class PodcastContent extends StatelessWidget {
                       right: AppSize.bodyPaddingRight,
                       bottom: AppSize.bodyPaddingTop,
                       child: Container(
-                        height: Get.height / 8,
+                        height: Get.height / 7,
                         decoration: BoxDecoration(
                           color: AppColors.primaryColor,
                           borderRadius: BorderRadius.circular(
@@ -210,23 +200,32 @@ class PodcastContent extends StatelessWidget {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              Obx(
-                                () => ProgressBar(
-                                  progress: controller.progressVal.value,
-                                  total: controller.player.duration ??
-                                      const Duration(seconds: 0),
-                                  buffered: controller.bufferVal.value,
-                                  baseBarColor: AppColors.defaultColorWhite,
-                                  thumbColor: AppColors.secondaryColor,
-                                  progressBarColor: AppColors.secondaryColor,
-                                  timeLabelTextStyle: AppTextStyle.heading2(),
-                                  onSeek: (position) {
-                                    controller.player.playing
-                                        ? controller.startProgress()
-                                        : controller.timer!.cancel();
-                                    controller.player.seek(position);
-                                  },
-                                ),
+                              ProgressBar(
+                                progress: controller.progressVal.value,
+                                total: controller.player.duration ??
+                                    const Duration(seconds: 0),
+                                buffered: controller.bufferVal.value,
+                                baseBarColor: AppColors.defaultColorWhite,
+                                thumbColor: AppColors.secondaryColor,
+                                progressBarColor: AppColors.secondaryColor,
+                                timeLabelTextStyle: AppTextStyle.heading2(),
+                                onSeek: (position) {
+                                  // controller.player.playing
+                                  //     ? controller.startProgress()
+                                  //     : controller.timer!.cancel();
+
+                                  controller.player.seek(position);
+                                  if (controller.player.playing) {
+                                    controller.startProgress();
+                                  } else if (position <=
+                                      const Duration(seconds: 0)) {
+                                    controller.player.seekToNext();
+                                    controller.changeStyle(
+                                      controller.player.currentIndex!,
+                                    );
+                                    controller.checkTimer();
+                                  }
+                                },
                               ),
                               SizedBox(
                                 width: Get.mediaQuery.size.width / 1.08,
@@ -237,8 +236,10 @@ class PodcastContent extends StatelessWidget {
                                     InkWell(
                                       onTap: () {
                                         controller.player.seekToNext();
-                                        controller.currentFileIndex.value =
-                                            controller.player.currentIndex!;
+                                        controller.changeStyle(
+                                          controller.player.currentIndex!,
+                                        );
+                                        controller.checkTimer();
                                       },
                                       child: Assets.icons.next.svg(
                                         color: AppColors.defaultColorWhite,
@@ -258,22 +259,27 @@ class PodcastContent extends StatelessWidget {
                                         controller.playState.value =
                                             controller.player.playing;
 
-                                        controller.currentFileIndex.value =
-                                            controller.player.currentIndex!;
+                                        controller.changeStyle(
+                                          controller.player.currentIndex!,
+                                        );
                                       },
-                                      child: Obx(
-                                        () => Icon(
-                                          controller.playState.value
-                                              ? Icons.pause_circle_filled
-                                              : Icons.play_circle_filled,
-                                        ),
-                                      ),
+                                      child: controller.playState.value
+                                          ? Assets.icons.pause.svg(
+                                              color:
+                                                  AppColors.defaultColorWhite,
+                                            )
+                                          : Assets.icons.play.svg(
+                                              color:
+                                                  AppColors.defaultColorWhite,
+                                            ),
                                     ),
                                     InkWell(
                                       onTap: () {
                                         controller.player.seekToPrevious();
-                                        controller.currentFileIndex.value =
-                                            controller.player.currentIndex!;
+                                        controller.changeStyle(
+                                          controller.player.currentIndex!,
+                                        );
+                                        controller.checkTimer();
                                       },
                                       child: Assets.icons.previous.svg(
                                         color: AppColors.defaultColorWhite,
@@ -283,11 +289,13 @@ class PodcastContent extends StatelessWidget {
                                     const SizedBox(),
                                     InkWell(
                                       onTap: () {
-                                        Get.back();
+                                        controller.setLoopMode();
                                       },
                                       child: Assets.icons.repeate.svg(
-                                        color: AppColors.defaultColorWhite,
-                                        width: 30,
+                                        color: controller.isLoopModelAll.value
+                                            ? AppColors.secondaryColor
+                                            : AppColors.defaultColorWhite,
+                                        width: 27,
                                       ),
                                     ),
                                   ],
@@ -300,7 +308,7 @@ class PodcastContent extends StatelessWidget {
                     ),
                   ],
                 ),
-              ),
+        ),
       ),
     );
   }

@@ -7,4 +7,5 @@ class AppApis {
       "${base}article/get.php?command=published_by_me&user_id=";
   static const registerAndVerifyCode = "${base}register/action.php";
   static const postArticle = "${base}article/post.php";
+  static const podcast = "https://techblog.sasansafari.com/Techblog/api/podcast/get.php?command=get_files&podcats_id=";
 }
