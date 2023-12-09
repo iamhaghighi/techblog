@@ -10,7 +10,9 @@ import 'package:techblog/controllers/article/article_content_controller.dart';
 import 'package:techblog/controllers/article/article_screen_controller.dart';
 import 'package:techblog/controllers/main/home_screen_controller.dart';
 import 'package:techblog/gen/assets.gen.dart';
-import 'package:techblog/main.dart';
+
+
+import '../../rout_management/route_management.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({

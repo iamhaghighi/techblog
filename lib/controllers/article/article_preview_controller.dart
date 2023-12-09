@@ -6,10 +6,12 @@ import 'package:get_storage/get_storage.dart';
 import 'package:techblog/components/apis.dart';
 import 'package:techblog/components/app_get_storage.dart';
 import 'package:techblog/controllers/other/file_picker_controller.dart';
-import 'package:techblog/main.dart';
+
 import 'package:techblog/models/article_content_model.dart';
 import 'package:techblog/services/dio_services.dart';
 import 'package:dio/dio.dart' as dio;
+
+import '../../rout_management/route_management.dart';
 
 class ArticlePreviewController extends GetxController {
   RxBool loading = true.obs;
@@ -29,7 +31,7 @@ class ArticlePreviewController extends GetxController {
     Map<String, dynamic> map = {
       'title': articleListInfo.value.title,
       'content': articleListInfo.value.content,
-      'cat_id': articleListInfo.value.catId,
+      'cat_id': "1",
       'tag_list': "[2, 6]",
       'user_id': GetStorage().read(AppStorage.userId),
       'image': await dio.MultipartFile.fromFile(

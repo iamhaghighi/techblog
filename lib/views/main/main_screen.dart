@@ -7,10 +7,11 @@ import 'package:techblog/controllers/main/home_screen_controller.dart';
 import 'package:techblog/controllers/main/main_screen_controller.dart';
 import 'package:techblog/controllers/register/register_intro_screen_controller.dart';
 import 'package:techblog/gen/assets.gen.dart';
-import 'package:techblog/main.dart';
 
 import 'package:techblog/views/main/home_screen.dart';
 import 'package:techblog/views/main/profile_screen.dart';
+
+import '../../rout_management/route_management.dart';
 
 class MainScreen extends StatelessWidget {
   MainScreen({

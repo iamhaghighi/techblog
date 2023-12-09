@@ -19,8 +19,17 @@ class ArticleContentController extends GetxController {
 
   getArticleInfo(String id) async {
     loading.value = true;
+
+    // final queryParam = {
+    //   'command': 'info',
+    //   'id': id,
+    //   'user_id': '1',
+    // };
+    // var uri = Uri.https(AppApis.base, 'article/get.php?', queryParam);
+
     var response = await DioService().getMethod(
       "${AppApis.base}article/get.php?command=info&id=$id&user_id=1",
+      // uri.toString -> nashod
     );
 
     if (response.statusCode == 200) {

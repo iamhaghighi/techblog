@@ -10,7 +10,9 @@ import 'package:techblog/components/text_style.dart';
 import 'package:techblog/controllers/article/article_screen_controller.dart';
 import 'package:techblog/gen/assets.gen.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:techblog/main.dart';
+
+import '../controllers/article/article_content_controller.dart';
+import '../rout_management/route_management.dart';
 
 Widget getWidgetRight({
   required String? rightSvgIcon,
@@ -291,7 +293,8 @@ Widget contentViewBox({
           ),
           child: GestureDetector(
             onTap: () {
-              // var id = modelList[index].id!;
+              var id = modelList[index].id!;
+              //? 1
               // Get.find<ArticleContentController>().getArticleInfo(id);
               // isDiffrentList
               //     ? Get.toNamed(
@@ -299,6 +302,17 @@ Widget contentViewBox({
               //         arguments: modelList[index],
               //       )
               //     : Get.toNamed(routeArticleContent);
+
+              //? 2
+              if (isDiffrentList) {
+                Get.toNamed(
+                  routePodcastContent,
+                  arguments: modelList[index],
+                );
+              } else {
+                Get.find<ArticleContentController>().getArticleInfo(id);
+                Get.toNamed(routeArticleContent);
+              }
               // ! --------------------------------------------
               // podcastContentController.getPodcastsFile(id);
               // Get.toNamed(
@@ -306,10 +320,6 @@ Widget contentViewBox({
               //   arguments: modelList[index],
               // );
               // ! --------------------------------------------
-              Get.toNamed(
-                routePodcastContent,
-                arguments: modelList[index],
-              );
             },
             child: Column(
               children: [

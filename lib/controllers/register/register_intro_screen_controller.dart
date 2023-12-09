@@ -8,9 +8,10 @@ import 'package:techblog/components/colors.dart';
 import 'package:techblog/components/size.dart';
 import 'package:techblog/components/text_style.dart';
 import 'package:techblog/gen/assets.gen.dart';
-import 'package:techblog/main.dart';
 import 'package:techblog/services/dio_services.dart';
 import 'package:techblog/controllers/article/article_manager_controller.dart';
+
+import '../../rout_management/route_management.dart';
 
 class RegisterIntroController extends GetxController {
   TextEditingController registerEmailTextEditingController =

@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:techblog/components/colors.dart';
 import 'package:techblog/components/size.dart';
 import 'package:techblog/gen/assets.gen.dart';
-import 'package:techblog/main.dart';
+import '../../rout_management/route_management.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
