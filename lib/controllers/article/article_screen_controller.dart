@@ -32,14 +32,17 @@ class ArticleScreenController extends GetxController {
     loading.value = true;
     articleList.clear();
 
-    final queryParam = {
-      'command': "get_articles_with_tag_id",
-      'tag_id': id,
-      'user_id': '',
-    };
-    var uri = Uri.https(AppApis.base, 'article/get.php?', queryParam);
+    // final queryParam = {
+    //   'command': "get_articles_with_tag_id",
+    //   'tag_id': id,
+    //   'user_id': '',
+    // };
+    // var uri = Uri.https(AppApis.base, 'article/get.php?', queryParam);
 
-    var response = await DioService().getMethod(uri.toString());
+    var response = await DioService().getMethod(
+        "https://techblog.sasansafari.com/Techblog/api/article/get.php?command=get_articles_with_tag_id&tag_id=$id&user_id=1"
+        // uri.toString(),
+        );
     if (response.statusCode == 200) {
       response.data.forEach((element) {
         articleList.add(

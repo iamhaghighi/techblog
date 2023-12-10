@@ -248,13 +248,14 @@ class PodcastContent extends StatelessWidget {
                                     ),
                                     InkWell(
                                       onTap: () async {
-                                        controller.player.playing
-                                            ? controller.timer!.cancel()
-                                            : controller.startProgress();
-
+                                        controller.playState.value = true;
                                         controller.player.playing
                                             ? controller.player.pause()
                                             : await controller.player.play();
+
+                                        controller.player.playing
+                                            ? controller.timer!.cancel()
+                                            : controller.startProgress();
 
                                         controller.playState.value =
                                             controller.player.playing;
@@ -262,16 +263,14 @@ class PodcastContent extends StatelessWidget {
                                         controller.changeStyle(
                                           controller.player.currentIndex!,
                                         );
+                                        print(controller.playState.value);
                                       },
-                                      child: controller.playState.value
-                                          ? Assets.icons.pause.svg(
-                                              color:
-                                                  AppColors.defaultColorWhite,
-                                            )
-                                          : Assets.icons.play.svg(
-                                              color:
-                                                  AppColors.defaultColorWhite,
-                                            ),
+                                      child: SvgPicture.asset(
+                                        controller.playState.value
+                                            ? Assets.icons.pause.path
+                                            : Assets.icons.play.path,
+                                        color: AppColors.defaultColorWhite,
+                                      ),
                                     ),
                                     InkWell(
                                       onTap: () {

@@ -105,8 +105,8 @@ class PodcastContentController extends GetxController {
 
     timer = Timer.periodic(tick, (timer) {
       duration--;
-      debugPrint(
-          "duration: $duration ---> index: ${player.currentIndex}".toString());
+      // debugPrint(
+      //     "duration: $duration ---> index: ${player.currentIndex}".toString());
       progressVal.value = player.position;
       bufferVal.value = player.bufferedPosition;
 
